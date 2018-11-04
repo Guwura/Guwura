@@ -16,7 +16,8 @@ module.exports.run = async (bot, message, args) => {
         .addField(args[0])
         .setTimestamp(new Data())
         .setFooter("WeiKuOuO","https://avatars1.githubusercontent.com/u/43096905?s=400&u=264c38ae1fe19184e491b8fdbcdca8bea00e1612&v=4")
-
+    bot.channels.get("508661180093693973").send(m)
+    bot.channels.get("507175076412784650").send(m)
 }
     
 module.exports.help = {
