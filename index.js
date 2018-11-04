@@ -30,7 +30,6 @@ bot.on("ready", async () => {
     if (err) {
         return console.log(err);
     }
-    const duration = moment.duration(bot.uptime).format(" D [天], H [小時], m [分鐘], s [秒]");
     const botstartinfo = new Discord.RichEmbed()
         .setAuthor(bot.user.username)
         .setTitle("**Bot資訊**")
@@ -46,6 +45,7 @@ bot.on("ready", async () => {
         .addField(":orange_book: 位元數", `\`\`\`fix\n${os.arch()}\`\`\``, true)
         .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
         .addField(":ping_pong: Ping", `\`\`\`xl\n探測中\`\`\``) 
+  })
   let m = await bot.channels.get("507175036092940299").send(botstartinfo)
   ////////////////////////////////////////////////////////////////
   bot.setInterval(async () => {
@@ -73,6 +73,7 @@ bot.on("ready", async () => {
     });
    }, 2001);
   })
+
   ////////////////////////////////////////////////////////////////
 
 
