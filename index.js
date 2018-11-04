@@ -86,8 +86,6 @@ bot.on("message", async message => {
 
   //單字簡化
   const sender = message.author;
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
   const msg = message.content.toUpperCase();
 
 })
