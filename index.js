@@ -101,12 +101,12 @@ bot.on("guildDelete", guild => {
   bot.user.setActivity(`我正在 ${bot.guilds.size} 個群組潛水`, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
 });
 
-bot.on('message', msg => {
+bot.on('message', message => {
 
   //全部放髒話的
-  if (msg.content.toLowerCase() === 'fuck') message.delete()  
-  if (msg.content.toLowerCase() === '幹') message.delete()  
-  if (msg.content.toLowerCase() === '他媽的') message.delete()  
+  if (message.content.toLowerCase() === 'fuck') message.delete()  
+  if (message.content.toLowerCase() === '幹') message.delete()  
+  if (message.content.toLowerCase() === '他媽的') message.delete()  
 })
 
 bot.login(token);
