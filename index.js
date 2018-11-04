@@ -37,12 +37,12 @@ bot.on("ready", async () => {
         .setAuthor(bot.user.username)
         .setTitle("**Bot資訊**")
         .setColor("RANDOM")
-        .addField(":desktop: MUHC群組人數","```" + (bot.users.size.toLocaleString()) + "```" , true)
-        .addField(":bust_in_silhouette: MUHC頻道數 ", "```" + (bot.channels.size.toLocaleString()) + "```" , true)
-        .addField("• 記憶體使用量", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`, true)
-        .addField("• 運行時間 ", `${duration}`, true)
-        .addField("• Discord.js版本", `v${version}`, true)
-        .addField("• Node.js版本", `${process.version}`, true)
+        .addField(":desktop: 服務人數",`\`\`\`${client.users.size}\`\`\``, true)
+        .addField(":bust_in_silhouette: 服務伺服器數 ", `\`\`\`${client.guilds.size}\`\`\`` , true)
+        .addField(":wrench: 記憶體使用量", `\`\`\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB\`\`\``, true)
+        .addField(":stopwatch: 運行時間 ", `\`\`\`${duration}\`\`\``, true)
+        .addField(":blue_book: Discord.js版本", `\`\`\`v${version}\`\`\``, true)
+        .addField(":green_book: Node.js版本", `\`\`\`${process.version}\`\`\``, true)
         .addField("• CPU", `\`\`\`md\n${os.cpus().map(i => `${i.model}`)[0]}\`\`\``)
         .addField("• CPU 使用率", `\`${percent.toFixed(2)}%\``, true)
         .addField("• 位元數", `\`${os.arch()}\``, true)
@@ -69,6 +69,8 @@ fs.readdir("./commands/", (err,files) => {
   })
 })
 bot.on("message", async message => {
+
+  //fs的command handler不用理他
 	if (message.author.bot || message.channel.type === 'dm') return;
 	if (message.content.toLowerCase().indexOf(prefix) !== 0) return
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
@@ -78,7 +80,16 @@ bot.on("message", async message => {
 		commandFile.run(bot, message, args);
 	}catch(err){
 		message.reply(`未知指令! 請輸入 **${prefix}help** 查看指令列表`)
-	}
+  }
+  if(message.author.bot) return;
+  if(message.content.indexOf(prefix) !== 0) return;
+
+  //單字簡化
+  const sender = message.author;
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+  const msg = message.content.toUpperCase();
+
 })
 
 
@@ -93,20 +104,11 @@ bot.on("guildDelete", guild => {
 });
 
 bot.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
-  }
-})  
 
-bot.on("message", async message => {
-  if(message.author.bot) return;
-  if(message.content.indexOf(prefix) !== 0) return;
-
-  const sender = message.author;
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  const msg = message.content.toUpperCase();
-
+  //全部放髒話的
+  if (msg.content.toLowerCase() === 'fuck') message.delete()  
+  if (msg.content.toLowerCase() === '幹') message.delete()  
+  if (msg.content.toLowerCase() === '他媽的') message.delete()  
 })
 
 bot.login(token);
