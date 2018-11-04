@@ -41,7 +41,8 @@ bot.on("ready", async () => {
       .addField(":orange_book: 位元數", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``) 
-  let m = await bot.channels.get("507175036092940299").send(botstartinfo)
+  let m1 = await bot.channels.get("507175036092940299").send(botstartinfo)
+  let m2 = await bot.channels.get("508653447164329996").send(botstartinfo)
   ////////////////////////////////////////////////////////////////
   bot.setInterval(async () => {
   cpuStat.usagePercent(async function(err, percent, seconds) {
@@ -64,7 +65,8 @@ bot.on("ready", async () => {
         .addField(":orange_book: 位元數", `\`\`\`fix\n${os.arch()}\`\`\``, true)
         .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
         .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``) 
-    m.edit(embedStats);
+    m1.edit(embedStats);
+    m2.edit(embedStats);
     });
    }, 2001);
   })
