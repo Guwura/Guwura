@@ -40,7 +40,8 @@ bot.on("ready", async () => {
       .addField(":pager: CPU 使用率", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":orange_book: 位元數", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
-      .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``) 
+      .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``)
+      .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - [[點我]](https://muhc.tw/dc) - https://muhc.tw/dc \n- 官方網站 - [[點我]](https://muhc.tw) - https://muhc.tw \`\`\``)
   let m1 = await bot.channels.get("507175036092940299").send(botstartinfo)
   let m2 = await bot.channels.get("508653447164329996").send(botstartinfo)
   ////////////////////////////////////////////////////////////////
@@ -70,7 +71,7 @@ bot.on("ready", async () => {
     });
    }, 2001);
   })
-  
+
   ////////////////////////////////////////////////////////////////
 
 
