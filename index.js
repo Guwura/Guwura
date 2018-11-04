@@ -53,6 +53,7 @@ bot.on("ready", async () => {
   }, 2001);
 })
 
+
 fs.readdir("./commands/", (err,files) => {
   if(err) console.log(err);
   let jsfile = files.filter(f => f.split(".").pop() === "js")
