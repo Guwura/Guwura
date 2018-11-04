@@ -26,26 +26,21 @@ bot.on("ready", async () => {
     bot.user.setActivity(status, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"})
   }, 2000);
   ////////////////////////////////////////////////////////////////
-  cpuStat.usagePercent(async function(err, percent, seconds) {
-    if (err) {
-        return console.log(err);
-    }
-    const botstartinfo = new Discord.RichEmbed()
-        .setAuthor(bot.user.username)
-        .setTitle("**Bot資訊**")
-        .setColor("RANDOM")
-        .addField(":desktop: 服務人數",`\`\`\`xl\n計算中...\`\`\``, true)
-        .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n計算中...\`\`\`` , true)
-        .addField(":wrench: 記憶體使用量", `\`\`\`xl\n${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(0)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB\`\`\``, true)
-        .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n正在啟動...\`\`\``, true)
-        .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- v${version}\`\`\``, true)
-        .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
-        .addField(":gear: CPU", `\`\`\`css\n偵測中...\`\`\``)
-        .addField(":pager: CPU 使用率", `\`\`\`fix\n正在啟動...%\`\`\``, true)
-        .addField(":orange_book: 位元數", `\`\`\`fix\n${os.arch()}\`\`\``, true)
-        .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
-        .addField(":ping_pong: Ping", `\`\`\`xl\n探測中\`\`\``) 
-  })
+  const botstartinfo = new Discord.RichEmbed()
+      .setAuthor(bot.user.username)
+      .setTitle("**Bot資訊**")
+      .setColor("RANDOM")
+      .addField(":desktop: 服務人數",`\`\`\`xl\n計算中...\`\`\``, true)
+      .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n計算中...\`\`\`` , true)
+      .addField(":wrench: 記憶體使用量", `\`\`\`xl\n正在啟動...\`\`\``, true)
+      .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n正在啟動...\`\`\``, true)
+      .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- 偵測中...\`\`\``, true)
+      .addField(":green_book: Node.js版本", `\`\`\`diff\n- 偵測中...\`\`\``, true)
+      .addField(":gear: CPU", `\`\`\`css\n偵測中...\`\`\``)
+      .addField(":pager: CPU 使用率", `\`\`\`fix\n正在啟動...\`\`\``, true)
+      .addField(":orange_book: 位元數", `\`\`\`fix\n正在啟動...\`\`\``, true)
+      .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
+      .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``) 
   let m = await bot.channels.get("507175036092940299").send(botstartinfo)
   ////////////////////////////////////////////////////////////////
   bot.setInterval(async () => {
