@@ -101,9 +101,4 @@ bot.on("guildDelete", guild => {
   bot.user.setActivity(`我正在 ${bot.guilds.size} 個群組潛水`, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
 });
 
-bot.on('message', message => {
-
-//
-}
-
 bot.login(token);
