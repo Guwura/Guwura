@@ -39,7 +39,7 @@ bot.on("ready", async () => {
         .setColor("RANDOM")
         .addField(":desktop: 服務人數",`\`\`\`${bot.users.size}\`\`\``, true)
         .addField(":bust_in_silhouette: 服務伺服器數 ", `\`\`\`${bot.guilds.size}\`\`\`` , true)
-        .addField(":wrench: 記憶體使用量", `\`\`\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB\`\`\``, true)
+        .addField(":wrench: 記憶體使用量", `\`\`\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024)} MB\`\`\``, true)
         .addField(":stopwatch: 運行時間 ", `\`\`\`${duration}\`\`\``, true)
         .addField(":blue_book: Discord.js版本", `\`\`\`v${version}\`\`\``, true)
         .addField(":green_book: Node.js版本", `\`\`\`${process.version}\`\`\``, true)
