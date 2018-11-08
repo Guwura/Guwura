@@ -10,6 +10,8 @@ module.exports.run = async (bot, message, args) => {
   
     if(!args[0]) return message.channel.send('請在指令後方填上你要打的字...').then(message => message.delete(5000));
     if(!args[1]) return message.channel.send('請在指令後方填上你要打的字...').then(message => message.delete(5000));
+    let text = args[1] + "\n" + args[2] + "\n" + args[3] + "\n" + args[4] + "\n" + args[5] + "\n" + args[6] + "\n" + args[7] + "\n" + args[8]
+
     let m = new Discord.RichEmbed()
         .setAuthor(bot.user.username)
         .setTitle("**最新更新**")
