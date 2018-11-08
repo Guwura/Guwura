@@ -26,6 +26,8 @@ bot.on("ready", async () => {
     bot.user.setActivity(status, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"})
   }, 2000);
   ////////////////////////////////////////////////////////////////
+  bot.channels.get("508653447164329996").bulkDelete("50")
+  bot.channels.get("507175036092940299").bulkDelete("50")
   const botstartinfo = new Discord.RichEmbed()
       .setAuthor(bot.user.username)
       .setTitle("**Bot資訊**")
