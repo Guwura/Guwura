@@ -52,7 +52,7 @@ bot.on("ready", async () => {
     if (err) {
         return console.log(err);
     }
-    const duration = moment.duration(bot.uptime).format(" D [天], H [小時], m [分鐘], s [秒]");
+    const duration = moment.duration(bot.uptime).format(" D [天], H [時], m [分], s [秒]");
     const embedStats = new Discord.RichEmbed()
         .setAuthor(bot.user.username)
         .setTitle("**Bot資訊**")
