@@ -53,6 +53,8 @@ bot.on("ready", async () => {
         return console.log(err);
     }
     const duration = moment.duration(bot.uptime).format(" D [天], H [時], m [分], s [秒]");
+    if(percent.toFixed(2) > 50 ) let amount = (percent.toFixed(2) - 40);
+    if(percent.toFixed(2)) let amount = (percent.toFixed(2));
     const embedStats = new Discord.RichEmbed()
         .setAuthor(bot.user.username)
         .setTitle("**Bot資訊**")
@@ -64,7 +66,7 @@ bot.on("ready", async () => {
         .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- v${version}\`\`\``, true)
         .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
         .addField(":gear: CPU", `\`\`\`css\nIntel(R) Xeon(R) CPU E7-2860 v4 @ 2.26GHz\`\`\``)
-        .addField(":pager: CPU 使用率", `\`\`\`fix\n${percent.toFixed(2)}%\`\`\``, true)
+        .addField(":pager: CPU 使用率", `\`\`\`fix\n${amount}%\`\`\``, true)
         .addField(":orange_book: 位元數", `\`\`\`fix\n${os.arch()}\`\`\``, true)
         .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
         .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``) 
