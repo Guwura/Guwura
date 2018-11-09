@@ -117,12 +117,10 @@ bot.on("message", async message => {
 
 bot.on("guildCreate", guild => {
   console.log(`加入群組 ${guild.name} [ ${guild.memberCount} ](id: ${guild.id})`);
-  bot.user.setActivity(`我正在 ${bot.guilds.size} 個群組潛水`, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
 });
 
 bot.on("guildDelete", guild => {
   console.log(`退出群組 ${guild.name} [ ${guild.memberCount} ] (id: ${guild.id})`);
-  bot.user.setActivity(`我正在 ${bot.guilds.size} 個群組潛水`, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
 });
 
 bot.login(token);

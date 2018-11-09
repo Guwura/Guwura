@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
     message.channel.bulkDelete(args[0]).then(() => {
         message.channel.send(`🗑 我吃掉了 **${args[0]}** 行文字`).then(message => message.delete(5000));
     }).catch().catch((e) => message.channel.send('你不能刪除14天以前的訊息'));
-
+    
 }
 
 module.exports.help = {
