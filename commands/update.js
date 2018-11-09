@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send('抱歉,你沒有**管理員權限**來使用這個指令').then(message => message.delete(5000));
     if (!message.guild.member(bot.user).hasPermission("MANAGE_MESSAGES")) return message.channel.send('我沒有**管理員權限**來刪除訊息').then(message => message.delete(5000));
 
-    let maxLen = 100
+    let maxLen = 1000
     if(args.join(' ').length > maxLen) return message.channel.send(`你發了超過** ${maxLen} **個字!`).then(message => message.delete(5000)); 
   
     if(!args[0]) return message.channel.send('請在指令後方填上你要打的字...').then(message => message.delete(5000));
@@ -24,6 +24,6 @@ module.exports.run = async (bot, message, args) => {
 }
     
 module.exports.help = {
-    name: "update",
+    name: "WeiKuUpdate",
 }
 
