@@ -54,7 +54,7 @@ bot.on("ready", async () => {
     }
     const duration = moment.duration(bot.uptime).format(" D [天], H [時], m [分], s [秒]");
 
-    let amount = (percent.toFixed(2) - (percent.toFixed(2)-5));
+    let amount = (percent.toFixed(2) - (percent.toFixed(2) - Math.floor(Math.random * 10 )));
 
     const embedStats = new Discord.RichEmbed()
         .setAuthor(bot.user.username)
