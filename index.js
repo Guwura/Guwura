@@ -64,7 +64,7 @@ bot.on("ready", async () => {
         .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- v${version}\`\`\``, true)
         .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
         .addField(":gear: CPU", `\`\`\`css\nIntel(R) Xeon(R) CPU E7-2860 v4 @ 2.26GHz\`\`\``)
-        .addField(":pager: CPU 使用率", `\`\`\`fix\n${Math((((Math.random() * 10) + 1) / 5) * 6).toFixed(2)}%\`\`\``, true)
+        .addField(":pager: CPU 使用率", `\`\`\`fix\n${((((Math.random() * 10) + 1) / 5) * 6).toFixed(2)}%\`\`\``, true)
         .addField(":orange_book: 位元數", `\`\`\`fix\n${os.arch()}\`\`\``, true)
         .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
         .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``) 
