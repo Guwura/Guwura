@@ -53,7 +53,14 @@ bot.on("ready", async () => {
         return console.log(err);
     }
     const duration = moment.duration(bot.uptime).format(" D [天], H [時], m [分], s [秒]");
-    if(percent.toFixed(2) > 50 ) let amount = (percent.toFixed(2) - 40);
+    if(percent.toFixed(2) > 90 ) let amount = (percent.toFixed(2) - 90);
+    if(percent.toFixed(2) > 80 ) let amount = (percent.toFixed(2) - 80);
+    if(percent.toFixed(2) > 70 ) let amount = (percent.toFixed(2) - 70);
+    if(percent.toFixed(2) > 60 ) let amount = (percent.toFixed(2) - 60);
+    if(percent.toFixed(2) > 50 ) let amount = (percent.toFixed(2) - 50);
+    if(percent.toFixed(2) > 40 ) let amount = (percent.toFixed(2) - 40);
+    if(percent.toFixed(2) > 30 ) let amount = (percent.toFixed(2) - 30);
+    if(percent.toFixed(2) > 20 ) let amount = (percent.toFixed(2) - 20);
     if(percent.toFixed(2)) let amount = (percent.toFixed(2));
     const embedStats = new Discord.RichEmbed()
         .setAuthor(bot.user.username)
