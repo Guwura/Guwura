@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
         .setTitle("Here is da the help list test")
         .addField('• 指令', "```py\n 1# muhc/help\n 2# muhc/ping \n 3# muhc/ascii\n 4# muhc/purge\n 5# muhc/test (並未完整開發)```" )
         .addField('• 說明', "```fix\n開啟此列表\n查詢延遲\n藝術文字(Admin)\n大量刪除訊息(Admin)\n測試用指令```" )
-        .addField('• 建議', "如果有任何有關於指令的建議，像是想要新增指令或是功能\n還歡迎聯絡 ***微苦#3402***\n我會很樂意為你服務的\n[MUHCYoutube]( https://muhc.tw/yt) | [Discord](https://discord.gg/UzmMwqc) | [MUHCWebsite]( https://muhc.tw) | [Invite](https://discordapp.com/api/oauth2/authorize?client_id=460042585663340545&permissions=8&scope=bot)\n如果可以的話請把Bot邀請到你的Discord群 你的支持是我們的動力" )
+        .addField('• 建議', "如果有任何有關於指令的建議，像是想要新增指令或是功能\n還歡迎聯絡 ***微苦#3402***\n我會很樂意為你服務的\n[MUHCYoutube](https://muhc.tw/yt) | [MUHCDiscord](https://muhc.tw/dc) | [MUHCWebsite]( https://muhc.tw) | [MUHCBotInvite](https://muhc.tw/bot)\n如果可以的話請把Bot邀請到你的Discord群 你的支持是我們的動力" )
         .setTimestamp(new Date())
         .setFooter(`${message.author.tag}`);
 
