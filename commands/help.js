@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args) => {
 
     let helplist = new Discord.RichEmbed()
         .setColor("RANDOM")
-        .setdescription("這裡可以讓你知道這隻機器人的**所有**資訊，但是請勿**濫用**指令來刷頻\n某些指令我們已經做了權限控制\n")
+        .setDescription("這裡可以讓你知道這隻機器人的**所有**資訊，但是請勿**濫用**指令來刷頻\n某些指令我們已經做了權限控制\n")
         .setAuthor(bot.user.username, bot.user.avatarURL)
         .setFooter(bot.user.username, bot.user.avatarURL)
         .setTitle("Here is da the help list test")
