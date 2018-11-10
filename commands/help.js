@@ -2,17 +2,17 @@ const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
 
-    let pingembed = new Discord.RichEmbed()
+    let helplist = new Discord.RichEmbed()
         .setColor("RANDOM")
-        
-        .addField('API Ping : ', Math.floor(bot.ping) + 'ms')
-        .addField('Bot Ping : ', Math.floor(botping) + 'ms')
-        .addField('Message Ping : ', '~' + Math.round(msgping2) + 'ms')
+        .setTitle("Here is da the help list test")
+        .addField('test1', "1" )
+        .addField('test2', "2" )
+        .addField('test3', "3" )
         .setTimestamp(new Date())
         .setFooter(`${message.author.tag}`);
 
         
-    return message.channel.send(pingembed);
+    return message.channel.send(helplist);
         
 
 }
