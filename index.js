@@ -44,7 +44,7 @@ bot.on("ready", async () => {
       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``)
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
-  let m = await bot.channels.filter(c => c.name=='bot-info').send(botstartinfo)
+  let m = await bot.channels.filter(c => c.name=='muhc-bot-info').send(botstartinfo)
   ////////////////////////////////////////////////////////////////
   bot.setInterval(async () => {
   cpuStat.usagePercent(async function(err, percent, seconds) {
