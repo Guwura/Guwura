@@ -44,8 +44,7 @@ bot.on("ready", async () => {
       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``)
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
-  let m1 = await bot.channels.get("507175036092940299").send(botstartinfo)
-  let m2 = await bot.channels.get("508653447164329996").send(botstartinfo)
+  let m = await bot.channels.filter(c => c.name=='bot info').send(botstartinfo)
   ////////////////////////////////////////////////////////////////
   bot.setInterval(async () => {
   cpuStat.usagePercent(async function(err, percent, seconds) {
@@ -53,7 +52,7 @@ bot.on("ready", async () => {
         return console.log(err);
     }
     const duration = moment.duration(bot.uptime).format(" D [天], H [時], m [分], s [秒]");
-    const embedStats = new Discord.RichEmbed()
+    const botinfo = new Discord.RichEmbed()
         .setAuthor(bot.user.username)
         .setTitle("**Bot資訊**")
         .setColor("RANDOM")
@@ -69,8 +68,7 @@ bot.on("ready", async () => {
         .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
         .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``) 
         .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
-    m1.edit(embedStats);
-    m2.edit(embedStats);
+    m.edit(botinfo)
     });
    }, 2001);
   })
