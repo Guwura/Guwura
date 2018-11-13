@@ -26,7 +26,7 @@ bot.on('message', async message => {
           message.channel.send("你已經同意了").then(message => message.delete(5000))
           message.delete()
       } else {
-          message.member.addRole('411897336621432832').then(msg.channel.send("已給予身分組").then(message => message.delete(5000)))
+          message.member.addRole('411897336621432832').then(message.channel.send("已給予身分組").then(message => message.delete(5000)))
           message.delete()
       }
     } else {
