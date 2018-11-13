@@ -19,7 +19,7 @@ let allstatus =
 bot.commands = new Discord.Collection();
 
 bot.on('message', async msg => {
-  if (msg.channel.id !== "411894866222514188") {
+  if (msg.channel.id == "411894866222514188") {
     if (msg.content.startsWith("我同意")) {
       if (!(msg.member.roles.has("411897336621432832"))) {
           msg.author.send("你已經同意了").then(message => message.delete(5000))
