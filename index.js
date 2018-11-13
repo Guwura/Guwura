@@ -22,9 +22,11 @@ bot.on('message', async msg => {
   if (msg.channel.id == "411894866222514188") {
     if (msg.content.startsWith("我同意")) {
       if (!(msg.member.roles.has("411897336621432832"))) {
-          msg.author.send("你已經同意了").then(message => message.delete(5000))
+          msg.channel.send("你已經同意了").then(message => message.delete(5000))
+          message.delete().catch(O_o=>{});
       } else {
-          msg.member.addRole('411897336621432832').then(msg.author.send("已給予身分組")).then(message => message.delete(5000));
+          msg.member.addRole('411897336621432832').then(msg.channel.send("已給予身分組")).then(message => message.delete(5000));
+          message.delete().catch(O_o=>{});
       }
     } else {
       msg.channel.send("請輸入\"我同意\"").then(message => message.delete(5000));
