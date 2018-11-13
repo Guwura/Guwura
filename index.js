@@ -18,6 +18,20 @@ let allstatus =
 ];
 bot.commands = new Discord.Collection();
 
+bot.on('message', async msg => {
+  if (msg.channel.id !== "411894866222514188") {
+    if (msg.content.startsWith("我同意")) {
+      if (!(msg.member.roles.has("411897336621432832"))) {
+          msg.author.send("你已經同意了").then(message => message.delete(5000))
+      } else {
+          msg.member.addRole('411897336621432832').then(msg.author.send("已給予身分組")).then(message => message.delete(5000));
+      }
+    } else {
+      msg.channel.send("請輸入\"我同意\"").then(message => message.delete(5000));
+    }
+  }
+})
+
 bot.on("ready", async () => {
   console.log(`${bot.user.username}成功啟動了!^w^, [ ${bot.guilds.size} | ${bot.channels.size} | ${bot.users.size} ]`);
 
