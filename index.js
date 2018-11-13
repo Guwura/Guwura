@@ -30,6 +30,8 @@ bot.on('message', async msg => {
       }
     } else {
       msg.channel.send("請輸入\"我同意\"").then(message => message.delete(5000));
+      message.delete().catch(O_o=>{});
+      return;
     }
   }
 })
