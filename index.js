@@ -1,8 +1,12 @@
 const Discord = require('discord.js');
 const fs = require("fs");
+const profanities = require('profanities');
+
 const bot = new Discord.Client();
+
 const token = process.env.token
 const prefix = process.env.prefix
+
 
 const { version } = require("discord.js");
 const moment = require("moment");
@@ -11,6 +15,8 @@ let os = require('os')
 let cpuStat = require("cpu-stat")
 const ms = require("ms")
 
+let modlogid = 12345678912345 //Channel ID for Mod Log
+  let modlog = message.guild.channels.get(modlogid)
 let allstatus = 
 [
   ` 使用muhc/help查詢指令`,
@@ -33,6 +39,18 @@ bot.on('message', async message => {
       message.channel.send("請輸入\"我同意\"").then(message => message.delete(5000));
       message.delete()
     }
+  }
+  let profEmbed = new Discord.RichEmbed()
+      .setDescription(`User ${message.author}, has been caught swearing!\nUserID: ${message.author.id} - UserTag: ${message.author.tag}`)
+  for (x = 0; x < profanities.length; x++) {
+      if (message.content.toUpperCase() == profanities[x].toUpperCase()) {
+          // if (message.content == profanities)
+          message.author.send(`Hinami Security, Swearing is not allowed here. Please refrain from swearing, ${message.author}`)
+          modlog.send(profEmbed).catch(() => message.guild.owner(`Mod-log hasn't been configured, any discord profanity triggers will be sent directly to you.\n\`${message.content}\`\nBy User: ${message.author}\nBy UID: ${message.author.id}\nBy UserTag: ${message.author.tag}`))
+          modlog.send(`\`Message Sent\`: ${message.content}`)
+          message.delete();
+          return;
+      }
   }
 })
 
