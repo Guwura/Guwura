@@ -15,8 +15,6 @@ let os = require('os')
 let cpuStat = require("cpu-stat")
 const ms = require("ms")
 
-let modlogid = 371301264329539584
-let modlog = message.guild.channels.get(modlogid)
 let allstatus = 
 [
   ` 使用muhc/help查詢指令`,
@@ -40,11 +38,13 @@ bot.on('message', async message => {
       message.delete()
     }
   }
+
+  let modlogid = 371301264329539584
+  let modlog = message.guild.channels.get(modlogid)
   let profEmbed = new Discord.RichEmbed()
       .setDescription(`User ${message.author}, has been caught swearing!\nUserID: ${message.author.id} - UserTag: ${message.author.tag}`)
   for (x = 0; x < profanities.length; x++) {
       if (message.content.toUpperCase() == profanities[x].toUpperCase()) {
-          // if (message.content == profanities)
           message.author.send(`Hinami Security, Swearing is not allowed here. Please refrain from swearing, ${message.author}`)
           modlog.send(profEmbed).catch(() => message.guild.owner(`Mod-log hasn't been configured, any discord profanity triggers will be sent directly to you.\n\`${message.content}\`\nBy User: ${message.author}\nBy UID: ${message.author.id}\nBy UserTag: ${message.author.tag}`))
           modlog.send(`\`Message Sent\`: ${message.content}`)
