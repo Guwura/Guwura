@@ -15,8 +15,8 @@ let os = require('os')
 let cpuStat = require("cpu-stat")
 const ms = require("ms")
 
-let modlogid = 12345678912345 //Channel ID for Mod Log
-  let modlog = message.guild.channels.get(modlogid)
+let modlogid = 371301264329539584
+let modlog = message.guild.channels.get(modlogid)
 let allstatus = 
 [
   ` 使用muhc/help查詢指令`,
@@ -88,7 +88,7 @@ bot.on("ready", async () => {
     if (err) {
         return console.log(err);
     }
-    const duration = moment.duration(bot.uptime).format(" D [天], H [時], m [分], s [秒]");
+    const duration = moment.duration(bot.uptime).format(" D [天] H [時] m [分] s [秒]");
     const botinfo = new Discord.RichEmbed()
         .setAuthor(bot.user.username)
         .setTitle("**Bot資訊**")
