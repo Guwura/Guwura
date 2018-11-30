@@ -102,7 +102,7 @@ bot.on("ready", async () => {
   ////////////////////////////////////////////////////////////////
 
 
-fs.readdir("./commands/" && "./music/", (err,files) => {
+fs.readdir("./commands/", (err,files) => {
   if(err) console.log(err);
   let jsfile = files.filter(f => f.split(".").pop() === "js")
   if(jsfile.length <= 0){
@@ -111,7 +111,7 @@ fs.readdir("./commands/" && "./music/", (err,files) => {
   }
 
   jsfile.forEach((f, i) => {
-    let props = require(`./commands/${f}` && `./music/${f}`);
+    let props = require(`./commands/${f}`);
     console.log(`${f} 載入成功!`)
     bot.commands.set(props.help.name, props);
   })
@@ -126,9 +126,7 @@ bot.on("message", async message => {
     const command = args.shift().toLowerCase();
 	try{
     let commandFile = require(`./commands/${command}.js`);
-    let MusicPlugin = require(`./music/${command}.js`);
     commandFile.run(bot, message, args);
-    MusicPlugin.run(bot, message, args);
 	}catch(err){
 		message.reply(`未知指令! 請輸入 **${prefix}help** 查看指令列表`)
   }
