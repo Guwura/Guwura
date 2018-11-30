@@ -2,7 +2,7 @@ const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const discord = require('discord.hs');
 
-module.exports.run = async (bot, msg, args,prefix) => {
+module.exports.run = async (bot, msg, prefix) => {
     if (msg.author.bot) return;
     if (!msg.content.startsWith(prefix)) return;
     const args = msg.content.split(` `);
