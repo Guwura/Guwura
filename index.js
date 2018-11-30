@@ -102,7 +102,7 @@ bot.on("ready", async () => {
   ////////////////////////////////////////////////////////////////
 
 
-fs.readdir("./commands/", (err,files) => {
+fs.readdir("./commands/" && "./music/", (err,files) => {
   if(err) console.log(err);
   let jsfile = files.filter(f => f.split(".").pop() === "js")
   if(jsfile.length <= 0){
@@ -111,26 +111,12 @@ fs.readdir("./commands/", (err,files) => {
   }
 
   jsfile.forEach((f, i) => {
-    let props = require(`./commands/${f}`);
+    let props = require(`./commands/${f}` && `./music/${f}`);
     console.log(`${f} 載入成功!`)
     bot.commands.set(props.help.name, props);
   })
 })
 
-fs.readdir("./music/", (err,files) => {
-  if(err) console.log(err);
-  let jsfile = files.filter(f => f.split(".").pop() === "js")
-  if(jsfile.length <= 0){
-    console.log("沒有任何的音樂指令");
-    return;
-  }
-
-  jsfile.forEach((f, i) => {
-    let props = require(`./music/${f}`);
-    console.log(`音樂插件 - ${f} 載入成功!`)
-    bot.commands.set(props.help.name, props);
-  })
-})
 bot.on("message", async message => {
 
   //command handler
@@ -148,10 +134,6 @@ bot.on("message", async message => {
   }
   if(message.author.bot) return;
   if(message.content.indexOf(prefix) !== 0) return;
-
-  //單字簡化
-  const sender = message.author;
-  const msg = message.content.toUpperCase();
 
 })
 
