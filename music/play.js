@@ -4,6 +4,7 @@ const discord = require('discord.js');
 
 module.exports.run = async (bot, msg) => {
     if (msg.author.bot) return;
+    const queue = new Map();
     const args = msg.content.split(` `);
     const searchString = args.slice(1).join(` `);
     const url = args[1] ? args[1].replace(/<(.*)>/g, `$1`) : ``;
