@@ -154,7 +154,7 @@ bot.on('message', async msg => {
   const url = args[1] ? args[1].replace(/<(.*)>/g, `$1`) : ``;
   const serverQueue = queue.get(msg.guild.id);
 
-  if (msg.content.startsWith(`${PREFIX}play`)) {
+  if (msg.content.startsWith(`muhc/play`)) {
       const voiceChannel = msg.member.voiceChannel;
       if (!voiceChannel) return msg.channel.send({
           embed: {
