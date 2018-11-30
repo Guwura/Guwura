@@ -38,15 +38,14 @@ bot.on('message', async message => {
       message.delete()
     }
   }
-  if(guild.id === 279229968855072769){
-    let modlogid = 371301264329539584
+  if(bot.guild.id === 279229968855072769){
     let profEmbed = new Discord.RichEmbed()
         .setDescription(`User ${message.author}, has been caught swearing!\nUserID: ${message.author.id} - UserTag: ${message.author.tag}`)
     for (x = 0; x < profanities.length; x++) {
       if (message.content.toUpperCase() == profanities[x].toUpperCase()) {
         message.author.send(`Hinami Security, Swearing is not allowed here. Please refrain from swearing, ${message.author}`)
-        bot.channels.get(modlogid).send(profEmbed).catch(() => message.guild.owner(`Mod-log hasn't been configured, any discord profanity triggers will be sent directly to you.\n\`${message.content}\`\nBy User: ${message.author}\nBy UID: ${message.author.id}\nBy UserTag: ${message.author.tag}`))
-        bot.channels.get(modlogid).send(`\`Message Sent\`: ${message.content}`)
+        bot.channels.get("371301264329539584").send(profEmbed)
+        bot.channels.get("371301264329539584").send(`\`Message Sent\`: ${message.content}`)
         message.delete();
         return;
       }
