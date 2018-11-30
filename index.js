@@ -97,15 +97,6 @@ bot.on("ready", async () => {
     m1.edit(botinfo)
     m2.edit(botinfo)
     m3.edit(botinfo)
-    bot.updatePresence({
-      state: '🐍',
-      details: 'MUHC競賽進行中',
-      startTimestamp: Date.now(),
-      endTimestamp: (duration),
-      largeImageKey: 'main ',
-      smallImageKey: 'status',
-      instance: true,
-    });
     });
    }, 2200);
   })
