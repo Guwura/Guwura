@@ -8,6 +8,7 @@ let cpuStat = require("cpu-stat")
 const ms = require("ms")
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
+const client = require('discord-rich-presence')('id');
 
 const bot = new Discord.Client();
 
@@ -41,13 +42,14 @@ bot.on('message', async message => {
 })
 
 bot.on("ready", async () => {
+
   console.log(`${bot.user.username}成功啟動了!^w^, [ ${bot.guilds.size} | ${bot.channels.size} | ${bot.users.size} ]`);
 
   bot.setInterval(async () => {
     let status = allstatus[Math.floor(Math.random()*allstatus.length)];
     bot.user.setActivity(status, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"})
   }, 2000);
-  ////////////////////////////////////////////////////////////////
+
   bot.channels.get("508653447164329996").bulkDelete("50")
   bot.channels.get("507175036092940299").bulkDelete("50")
   bot.channels.get("518054671286534190").bulkDelete("50")
@@ -83,7 +85,7 @@ bot.on("ready", async () => {
         .addField(":desktop: 服務人數",`\`\`\`xl\n${bot.users.size}\`\`\``, true)
         .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n${bot.guilds.size}\`\`\`` , true)
         .addField(":wrench: 記憶體使用量", `\`\`\`xl\n${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(0)} / 66200 MB\`\`\``, true)
-        .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n${duration}\`\`\``, true)
+        .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n${}\`\`\``, true)
         .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- v${version}\`\`\``, true)
         .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
         .addField(":gear: CPU", `\`\`\`css\nIntel(R) Xeon(R) CPU E7-2860 v4 @ 2.26GHz\`\`\``)
@@ -95,6 +97,15 @@ bot.on("ready", async () => {
     m1.edit(botinfo)
     m2.edit(botinfo)
     m3.edit(botinfo)
+    bot.updatePresence({
+      state: '🐍',
+      details: 'MUHC競賽進行中',
+      startTimestamp: Date.now(),
+      endTimestamp: (duration),
+      largeImageKey: 'main ',
+      smallImageKey: 'status',
+      instance: true,
+    });
     });
    }, 2200);
   })
