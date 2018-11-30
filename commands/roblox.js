@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 const rbx = require("roblox-js")
-exports.run = (bot, message, args) => {
+module.exports.run = (bot, message, args) => {
     let verifiedRole = message.guild.roles.find(r => r.name === "Verified")
     if (message.member.roles.has(verifiedRole.id)) return message.channel.send("You are already verified.")
 
@@ -86,3 +86,7 @@ exports.run = (bot, message, args) => {
         })
     })
 }
+
+module.exports.help = {
+    name: "roblox"
+};
