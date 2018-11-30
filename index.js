@@ -40,12 +40,12 @@ bot.on('message', async message => {
   }
   if(bot.guild.id === 279229968855072769){
     let profEmbed = new Discord.RichEmbed()
-        .setDescription(`User ${message.author}, has been caught swearing!\nUserID: ${message.author.id} - UserTag: ${message.author.tag}`)
+        .setDescription(` ${message.author}\nUserID: ${message.author.id} - UserTag: ${message.author.tag}`)
     for (x = 0; x < profanities.length; x++) {
       if (message.content.toUpperCase() == profanities[x].toUpperCase()) {
-        message.author.send(`Hinami Security, Swearing is not allowed here. Please refrain from swearing, ${message.author}`)
+        message.author.send(`${message.author}`)
         bot.channels.get("371301264329539584").send(profEmbed)
-        bot.channels.get("371301264329539584").send(`\`Message Sent\`: ${message.content}`)
+        bot.channels.get("371301264329539584").send(`\`訊息\`: ${message.content}`)
         message.delete();
         return;
       }
