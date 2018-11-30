@@ -8,7 +8,7 @@ let cpuStat = require("cpu-stat")
 const ms = require("ms")
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
-const client = require('discord-rich-presence')('id');
+const rpc = require('discord-rich-presence')('506843065424543745');
 
 const bot = new Discord.Client();
 
