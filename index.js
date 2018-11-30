@@ -38,7 +38,7 @@ bot.on('message', async message => {
       message.delete()
     }
   }
-  if(bot.guild.id === 279229968855072769){
+  if(message.guild.id === 279229968855072769){
     let profEmbed = new Discord.RichEmbed()
         .setDescription(` ${message.author}\nUserID: ${message.author.id} - UserTag: ${message.author.tag}`)
     for (x = 0; x < profanities.length; x++) {
