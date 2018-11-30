@@ -1,6 +1,6 @@
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
-const discord = require('discord.hs');
+const discord = require('discord.js');
 
 module.exports.run = async (bot, msg, prefix) => {
     if (msg.author.bot) return;
