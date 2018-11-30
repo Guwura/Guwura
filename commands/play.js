@@ -512,4 +512,7 @@ module.exports.run = async (bot, msg, prefix) => {
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 100);
     serverQueue.textChannel.send(`🎶 正在播放: ${serverQueue.songs[0].title}`)
   }
-  
+
+  module.exports.help = {
+    name: "play",
+}   
