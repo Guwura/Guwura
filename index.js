@@ -85,7 +85,7 @@ bot.on("ready", async () => {
         .addField(":desktop: 服務人數",`\`\`\`xl\n${bot.users.size}\`\`\``, true)
         .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n${bot.guilds.size}\`\`\`` , true)
         .addField(":wrench: 記憶體使用量", `\`\`\`xl\n${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(0)} / 66200 MB\`\`\``, true)
-        .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n${}\`\`\``, true)
+        .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n${duration}\`\`\``, true)
         .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- v${version}\`\`\``, true)
         .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
         .addField(":gear: CPU", `\`\`\`css\nIntel(R) Xeon(R) CPU E7-2860 v4 @ 2.26GHz\`\`\``)
