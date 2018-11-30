@@ -38,19 +38,6 @@ bot.on('message', async message => {
       message.delete()
     }
   }
-  if(message.guild.id === 279229968855072769){
-    let profEmbed = new Discord.RichEmbed()
-        .setDescription(` ${message.author}\nUserID: ${message.author.id} - UserTag: ${message.author.tag}`)
-    for (x = 0; x < profanities.length; x++) {
-      if (message.content() === profanities[x]) {
-        message.author.send(`${message.author}`)
-        bot.channels.get("371301264329539584").send(profEmbed)
-        bot.channels.get("371301264329539584").send(`\`訊息\`: ${message.content}`)
-        message.delete();
-        return;
-      }
-    }
-  }
 })
 
 bot.on("ready", async () => {
