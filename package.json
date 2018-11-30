@@ -12,7 +12,9 @@
     "moment-duration-format": "^2.2.2",
     "ms": "^2.1.1",
     "os": "^0.1.1",
-    "profanities": "^2.8.0"
+    "profanities": "^2.8.0",
+    "simple-youtube-api": "^5.1.1",
+    "ytdl-core": "^0.28.0"
   },
   "devDependencies": {},
   "scripts": {
