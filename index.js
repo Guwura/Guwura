@@ -50,6 +50,7 @@ bot.on("ready", async () => {
   ////////////////////////////////////////////////////////////////
   bot.channels.get("508653447164329996").bulkDelete("50")
   bot.channels.get("507175036092940299").bulkDelete("50")
+  bot.channels.get("518054671286534190").bulkDelete("50")
   const botstartinfo = new Discord.RichEmbed()
       .setAuthor(bot.user.username)
       .setTitle("**Bot資訊**")
@@ -68,8 +69,7 @@ bot.on("ready", async () => {
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
   let m1 = await bot.channels.get("508653447164329996").send(botstartinfo)
   let m2 = await bot.channels.get("507175036092940299").send(botstartinfo)
-  
-  
+  let m3 = await bot.channels.get("518054671286534190").send(botstartinfo)
   bot.setInterval(async () => {
   cpuStat.usagePercent(async function(err) {
     if (err) {
@@ -94,6 +94,7 @@ bot.on("ready", async () => {
         .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
     m1.edit(botinfo)
     m2.edit(botinfo)
+    m3.edit(botinfo)
     });
    }, 2200);
   })
