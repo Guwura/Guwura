@@ -133,14 +133,16 @@ fs.readdir("./music/", (err,files) => {
 })
 bot.on("message", async message => {
 
-  //fs的command handler不用理他
+  //command handler
 	if (message.author.bot || message.channel.type === 'dm') return;
 	if (message.content.toLowerCase().indexOf(prefix) !== 0) return
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 	try{
-		let commandFile = require(`./commands/${command}.js`);
-		commandFile.run(bot, message, args);
+    let commandFile = require(`./commands/${command}.js`);
+    let MusicPlugin = require(`./music/${command}.js`);
+    commandFile.run(bot, message, args);
+    MusicPlugin.run(bot, message, args);
 	}catch(err){
 		message.reply(`未知指令! 請輸入 **${prefix}help** 查看指令列表`)
   }
