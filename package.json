@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "cpu-stat": "^2.0.1",
+    "discord-rich-presence": "0.0.7",
     "discord.js": "^11.4.2",
     "figlet": "^1.2.1",
     "fs": "0.0.1-security",
