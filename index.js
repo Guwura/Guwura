@@ -32,7 +32,7 @@ bot.on('ready', function() {
       };
       if (index === statuslist.length) index = 0;
       else index++;
-  }, 3000);
+  }, 5000);
 });
 bot.on("ready", async () => {
 
