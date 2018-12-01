@@ -15,23 +15,35 @@ const bot = new Discord.Client();
 const token = process.env.token
 const prefix = process.env.prefix
 
+const index = 0;
 
-let allstatus = 
-[
-  ` 使用muhc/help查詢指令`,
-  ` 機器人製作-微苦`
-];
 bot.commands = new Discord.Collection();
 
+bot.on('ready', function() {
+  this.bot.setInterval(async () => {
+      const statuslist = [
+          ` 使用 muhc/help 查詢指令 ♪`,
+          ` 機器人製作-微苦 ♪`
+      ];
+      try {
+          await bot.user.setActivity(statuslist[index], { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
+      } catch (error) {
+          console.error(error);
+      };
+      if (index === statuslist.length)
+          return index = 0;
+      else +index;
+  }, 3000);
+});
 bot.on("ready", async () => {
 
   console.log(`${bot.user.username}成功啟動了!^w^, [ ${bot.guilds.size} | ${bot.channels.size} | ${bot.users.size} ]`);
 
-  bot.setInterval(async () => {
-    let status = allstatus[Math.floor(Math.random()*allstatus.length)];
-    bot.user.setActivity(status, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"})
-  }, 2000);
-
+  // bot.setInterval(async () => {
+  //   let status = allstatus[Math.floor(Math.random()*allstatus.length)];
+  //   bot.user.setActivity(status, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"})
+  // }, 2000);
+  
   bot.channels.get("508653447164329996").bulkDelete("50")
   bot.channels.get("507175036092940299").bulkDelete("50")
   bot.channels.get("518054671286534190").bulkDelete("50")
@@ -83,8 +95,6 @@ bot.on("ready", async () => {
    }, 2200);
   })
 
-
-
 fs.readdir("./commands/", (err,files) => {
   if(err) console.log(err);
   let jsfile = files.filter(f => f.split(".").pop() === "js")
@@ -105,7 +115,7 @@ bot.on("message", async message => {
   //command handler
 	if (message.author.bot || message.channel.type === 'dm') return;
 	if (message.content.toLowerCase().indexOf(prefix) !== 0) return
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const args = message.content.split(" ").slice(0);
     const command = args.shift().toLowerCase();
 	try{
     let commandFile = require(`./commands/${command}.js`);
@@ -118,8 +128,7 @@ bot.on("message", async message => {
 
   //on privte message
   if (message.channel.type === "dm") { //if the channel is a DM channel
-    var dmsg = message.content.split(" ").slice(0)
-    var dmsg = dmsg.slice(0).join(" ") //create the args
+    var dmsg = args.slice(0).join(" ") //create the args
   
     if (message.content.startsWith(prefix)) return message.channel.send(":x: Please use commands in real server! :x:") 
     message.channel.send("This message has been send to the staff! :incoming_envelope:");
@@ -134,14 +143,13 @@ bot.on("message", async message => {
   
   if (message.content.startsWith(prefix + "reply")) {
     if (message.author.id !== "YOUR_ID") return message.reply('You cannot use that!')
-    var dmsg = message.content.split(" ").slice(0)
-    var Rdmsg = message.content.split(" ").slice(2).join(" ")
-    var userID = dmsg[1]
-    if (isNaN(dmsg[1])) return message.reply("This is not an ID!") //if args is Not A Number!
+    var Rargs = message.content.split(" ").slice(2).join(" ")
+    var userID = args[1]
+    if (isNaN(args[1])) return message.reply("This is not an ID!") //if args is Not A Number!
     var embed = new Discord.RichEmbed()
         .setColor('RANDOM')
         .setTitle("the staff answered you!")
-        .setDescription(Rdmsg)
+        .setDescription(Rargs)
         .setFooter("this message was sent to you by: " + message.author.username + " !")
     bot.users.get(userID).send(embed)
     message.channel.send("Send!").catch(console.error)
