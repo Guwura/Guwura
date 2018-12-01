@@ -62,7 +62,7 @@ bot.on("ready", async () => {
       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``, true)
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
-      .addField("目前狀態")
+      .addField("目前狀態","")
       .setImage("https://discordbots.org/api/widget/506843065424543745.png")
   let m1 = await bot.channels.get("508653447164329996").send(botstartinfo)
   let m2 = await bot.channels.get("507175036092940299").send(botstartinfo)
