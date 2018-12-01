@@ -23,7 +23,7 @@ bot.on('ready', function() {
   bot.setInterval(async () => {
       const statuslist = [
           ` 使用 muhc/help 查詢指令 ♪`,
-          ` 機器人製作 - 微苦 ♪`
+          ` 機器人製作 - 微苦 ♪`,
           ` 頭像繪製 - 島風很棒喔嘿嘿嘿 ♪`
       ];
       try {
