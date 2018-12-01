@@ -157,7 +157,7 @@ bot.on("message", async message => {
 
 //on r18
 if (message.author.bot) return
-  if (message.channel.id == "411894866222514188") {
+  if (message.channel.id === "411894866222514188") {
     if (message.content === "我同意") {
       if (message.member.roles.has("411897336621432832")) {
           message.channel.send("你已經同意了").then(message => message.delete(5000))
@@ -171,7 +171,6 @@ if (message.author.bot) return
       message.delete()
     }
   }
-
 })
 
 
