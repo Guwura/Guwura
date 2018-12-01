@@ -30,8 +30,7 @@ bot.on('ready', function() {
       } catch (error) {
           console.log(error);
       };
-      if (index === statuslist.length)
-          return index = 0;
+      if (index === statuslist.length) index = 0;
       else index++;
   }, 3000);
 });
