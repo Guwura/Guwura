@@ -15,7 +15,7 @@ const bot = new Discord.Client();
 const token = process.env.token
 const prefix = process.env.prefix
 
-const index = 0;
+let index = 0;
 
 bot.commands = new Discord.Collection();
 
