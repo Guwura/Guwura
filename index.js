@@ -8,7 +8,6 @@ let cpuStat = require("cpu-stat")
 const ms = require("ms")
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
-const rpc = require('discord-rich-presence')('506843065424543745');
 
 const bot = new Discord.Client();
 
@@ -22,9 +21,9 @@ bot.commands = new Discord.Collection();
 bot.on('ready', function() {
   bot.setInterval(async () => {
       const statuslist = [
-          ` 使用 muhc/help 查詢指令 ♪`,
+          ` muhc/help | 任何問題請WeiKu#3402 ♪`,
           ` 機器人製作 - 微苦 ♪`,
-          ` 頭像繪製 - 島風很棒喔嘿嘿嘿 ♪`
+          ` 頭像繪製 - 星亞 ♪`
       ];
       try {
           await bot.user.setActivity(statuslist[index], { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
