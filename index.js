@@ -19,7 +19,6 @@ let index = 0;
 bot.commands = new Discord.Collection();
 
 bot.on('ready', function() {
-  bot.setInterval(async () => {
       const statuslist = [
           `muhc/help | 任何問題請WeiKu#3402 ♪`,
           `機器人製作 | 微苦 ♪`,
@@ -29,14 +28,11 @@ bot.on('ready', function() {
           `幫Kizinn按讚 | Muhc.tw/vote ♪`,
           `Muhc官方頻道 | Muhc.tw/yt ♪`,
       ];
-      try {
-          await bot.user.setActivity(statuslist[index], { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
-      } catch (error) {
-          console.log(error);
-      };
-      if (index === statuslist.length) index = 0;
-      else index++;
-  }, 7000);
+      bot.setInterval(() => {
+        bot.user.setActivity(statuslist[index], { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
+        index++
+        if (index === statuslist.length) index = 0;
+    }, 3000)
 });
 bot.on("ready", async () => {
 
