@@ -36,7 +36,7 @@ bot.on('ready', function() {
       };
       if (index === statuslist.length) index = 0;
       else index++;
-  }, 4000);
+  }, 6000);
 });
 bot.on("ready", async () => {
 
