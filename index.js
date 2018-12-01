@@ -26,8 +26,8 @@ bot.on('ready', function() {
           `頭像繪製 | 星亞 ♪`,
           `官方網站 | Muhc.tw ♪`,
           `邀請Kizinn | Muhc.tw/bot ♪`,
-          `幫Kizinn按讚 | Muhc.tw/vote ♪`
-          `Muhc官方頻道 | Muhc.tw/yt ♪`
+          `幫Kizinn按讚 | Muhc.tw/vote ♪`,
+          `Muhc官方頻道 | Muhc.tw/yt ♪`,
       ];
       try {
           await bot.user.setActivity(statuslist[index], { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
@@ -36,7 +36,7 @@ bot.on('ready', function() {
       };
       if (index === statuslist.length) index = 0;
       else index++;
-  }, 5000);
+  }, 4000);
 });
 bot.on("ready", async () => {
 
