@@ -23,24 +23,6 @@ let allstatus =
 ];
 bot.commands = new Discord.Collection();
 
-bot.on('message', async message => {
-  if (message.author.bot) return
-  if (message.channel.id == "411894866222514188") {
-    if (message.content === "我同意") {
-      if (message.member.roles.has("411897336621432832")) {
-          message.channel.send("你已經同意了").then(message => message.delete(5000))
-          message.delete()
-      } else {
-          message.member.addRole('411897336621432832').then(message.channel.send("已給予身分組").then(message => message.delete(5000)))
-          message.delete()
-      }
-    } else {
-      message.channel.send("請輸入\"我同意\"").then(message => message.delete(5000));
-      message.delete()
-    }
-  }
-})
-
 bot.on("ready", async () => {
 
   console.log(`${bot.user.username}成功啟動了!^w^, [ ${bot.guilds.size} | ${bot.channels.size} | ${bot.users.size} ]`);
@@ -134,6 +116,54 @@ bot.on("message", async message => {
   if(message.author.bot) return;
   if(message.content.indexOf(prefix) !== 0) return;
 
+  //on privte message
+  if (message.channel.type === "dm") { //if the channel is a DM channel
+    var args = message.content.split(" ").slice(0)
+    var args = args.slice(0).join(" ") //create the args
+  
+    if (message.content.startsWith(prefix)) return message.channel.send(":x: Please use commands in real server! :x:") 
+    message.channel.send("This message has been send to the staff! :incoming_envelope:");
+    if (message.content.startsWith(prefix)) return
+    if (args.length > 256) return message.reply("Your message content too many characters :/") 
+    var embed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setTitle("New request in DM!")
+        .addField(args, "Send by: " + message.author.username + " with the ID: " + message.author.id)
+    bot.users.get("274478905883361280").send(embed)
+  }
+  
+  if (message.content.startsWith(prefix + "reply")) {
+    if (message.author.id !== "YOUR_ID") return message.reply('You cannot use that!')
+    var args = message.content.split(" ").slice(0)
+    var Rargs = message.content.split(" ").slice(2).join(" ")
+    var userID = args[1]
+    if (isNaN(args[1])) return message.reply("This is not an ID!") //if args is Not A Number!
+    var embed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setTitle("the staff answered you!")
+        .setDescription(Rargs)
+        .setFooter("this message was sent to you by: " + message.author.username + " !")
+    bot.users.get(userID).send(embed)
+    message.channel.send("Send!").catch(console.error)
+  }
+
+//on r18
+if (message.author.bot) return
+  if (message.channel.id == "411894866222514188") {
+    if (message.content === "我同意") {
+      if (message.member.roles.has("411897336621432832")) {
+          message.channel.send("你已經同意了").then(message => message.delete(5000))
+          message.delete()
+      } else {
+          message.member.addRole('411897336621432832').then(message.channel.send("已給予身分組").then(message => message.delete(5000)))
+          message.delete()
+      }
+    } else {
+      message.channel.send("請輸入\"我同意\"").then(message => message.delete(5000));
+      message.delete()
+    }
+  }
+
 })
 
 
@@ -145,34 +175,4 @@ bot.on("guildDelete", guild => {
   console.log(`退出群組 ${guild.name} [ ${guild.memberCount} ] (id: ${guild.id})`);
 });
 
-if (message.channel.type === "dm") { //if the channel is a DM channel
-  var args = message.content.split(" ").slice(0)
-  var args = args.slice(0).join(" ") //create the args
-
-  if (message.content.startsWith(prefix)) return message.channel.send(":x: Please use commands in real server! :x:") 
-  message.channel.send("This message has been send to the staff! :incoming_envelope:");
-  if (message.content.startsWith(prefix)) return
-  if (args.length > 256) return message.reply("Your message content too many characters :/") 
-  var embed = new Discord.RichEmbed()
-      .setColor('RANDOM')
-      .setTitle("New request in DM!")
-      .addField(args, "Send by: " + message.author.username + " with the ID: " + message.author.id)
-  bot.users.get("274478905883361280").send(embed)
-}
-
-
-if (message.content.startsWith(prefix + "reply")) {
-  if (message.author.id !== "YOUR_ID") return message.reply('You cannot use that!')
-  var args = message.content.split(" ").slice(0)
-  var Rargs = message.content.split(" ").slice(2).join(" ")
-  var userID = args[1]
-  if (isNaN(args[1])) return message.reply("This is not an ID!") //if args is Not A Number!
-  var embed = new Discord.RichEmbed()
-      .setColor('RANDOM')
-      .setTitle("the staff answered you!")
-      .setDescription(Rargs)
-      .setFooter("this message was sent to you by: " + message.author.username + " !")
-  bot.users.get(userID).send(embed)
-  message.channel.send("Send!").catch(console.error)
-}
 bot.login(token);
