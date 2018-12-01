@@ -27,6 +27,7 @@ bot.on('ready', function() {
           `邀請Kizinn | Muhc.tw/bot ♪`,
           `幫Kizinn按讚 | Muhc.tw/vote ♪`,
           `Muhc官方頻道 | Muhc.tw/yt ♪`,
+          `如想再你的伺服器使用bot-info請洽WeiKu#3402 ♪`
       ];
       bot.setInterval(() => {
         bot.user.setActivity(statuslist[index], { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
@@ -38,11 +39,6 @@ bot.on("ready", async () => {
 
   console.log(`${bot.user.username}成功啟動了!^w^, [ ${bot.guilds.size} | ${bot.channels.size} | ${bot.users.size} ]`);
 
-  // bot.setInterval(async () => {
-  //   let status = allstatus[Math.floor(Math.random()*allstatus.length)];
-  //   bot.user.setActivity(status, { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"})
-  // }, 2000);
-  
   bot.channels.get("508653447164329996").bulkDelete("50")
   bot.channels.get("507175036092940299").bulkDelete("50")
   bot.channels.get("518054671286534190").bulkDelete("50")
