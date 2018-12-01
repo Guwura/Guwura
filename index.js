@@ -28,7 +28,7 @@ bot.on('ready', function() {
       try {
           await bot.user.setActivity(statuslist[index], { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
       } catch (error) {
-          console.error(error);
+          console.log(error);
       };
       if (index === statuslist.length)
           return index = 0;
@@ -59,7 +59,6 @@ bot.on("ready", async () => {
       .addField(":green_book: Node.js版本", `\`\`\`diff\n- 偵測中...\`\`\``, true)
       .addField(":gear: CPU", `\`\`\`css\n偵測中...\`\`\``)
       .addField(":pager: CPU 使用率", `\`\`\`fix\n正在啟動...\`\`\``, true)
-      .addField(":orange_book: 位元數", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``)
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
@@ -84,7 +83,6 @@ bot.on("ready", async () => {
         .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
         .addField(":gear: CPU", `\`\`\`css\nIntel(R) Xeon(R) CPU E7-2860 v4 @ 2.26GHz\`\`\``)
         .addField(":pager: CPU 使用率", `\`\`\`fix\n${((((Math.random() * 5) + 1) / 5) * 6).toFixed(2)}%\`\`\``, true)
-        .addField(":orange_book: 位元數", `\`\`\`fix\n${os.arch()}\`\`\``, true)
         .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
         .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``) 
         .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
