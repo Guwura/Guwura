@@ -20,7 +20,7 @@ const index = 0;
 bot.commands = new Discord.Collection();
 
 bot.on('ready', function() {
-  this.bot.setInterval(async () => {
+  bot.setInterval(async () => {
       const statuslist = [
           ` 使用 muhc/help 查詢指令 ♪`,
           ` 機器人製作-微苦 ♪`
