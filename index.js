@@ -38,10 +38,10 @@ bot.on('ready', function() {
 bot.on("ready", async () => {
 
   console.log(`${bot.user.username}成功啟動了!^w^, [ ${bot.guilds.size} | ${bot.channels.size} | ${bot.users.size} ]`);
-  bot.channels.filter(c => c.name=="kizinn-info").forEach(c => c.bulkDelete("50"))
-  // bot.channels.get("508653447164329996").bulkDelete("50")
-  // bot.channels.get("507175036092940299").bulkDelete("50")
-  // bot.channels.get("518054671286534190").bulkDelete("50")
+  // bot.channels.filter(c => c.name=="kizinn-info").forEach(c => c.bulkDelete("50"))
+  bot.channels.get("508653447164329996").bulkDelete("50")
+  bot.channels.get("507175036092940299").bulkDelete("50")
+  bot.channels.get("518054671286534190").bulkDelete("50")
   const botstartinfo = new Discord.RichEmbed()
       .setAuthor(bot.user.username)
       .setTitle("**Bot資訊**")
@@ -63,36 +63,36 @@ bot.on("ready", async () => {
   let m1 = await bot.channels.get("508653447164329996").send(botstartinfo)
   let m2 = await bot.channels.get("507175036092940299").send(botstartinfo)
   let m3 = await bot.channels.get("518054671286534190").send(botstartinfo)
-  // bot.setInterval(async () => {
-  // cpuStat.usagePercent(async function(err) {
-  //   if (err) {
-  //       return console.log(err);
-  //   }
-  //   const duration = moment.duration(bot.uptime).format(" D [天] H [時] m [分] s [秒]");
-  //   const botinfo = new Discord.RichEmbed()
-  //       .setAuthor(bot.user.username)
-  //       .setTitle("**Bot資訊**")
-  //       .setColor("RANDOM")
-  //       .addField(":desktop: 服務人數",`\`\`\`xl\n${bot.users.size}\`\`\``, true)
-  //       .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n${bot.guilds.size}\`\`\`` , true)
-  //       .addField(":wrench: 記憶體使用量", `\`\`\`xl\n${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(0)} / 66200 MB\`\`\``, true)
-  //       .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n${duration}\`\`\``, true)
-  //       .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- v${version}\`\`\``, true)
-  //       .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
-  //       .addField(":gear: CPU", `\`\`\`css\nIntel(R) Xeon(R) CPU E7-2860 v4 @ 2.26GHz\`\`\``)
-  //       .addField(":pager: CPU 使用率", `\`\`\`fix\n${((((Math.random() * 5) + 1) / 5) * 6).toFixed(2)}%\`\`\``, true)
-  //       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
-  //       .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``, true) 
-  //       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
-  //       .addField("目前狀態","Vote數量")
-  //       .setImage("https://discordbots.org/api/widget/506843065424543745.png")
-  //   // m.edit(botinfo)
-  //   m1.edit(botinfo)
-  //   m2.edit(botinfo)
-  //   m3.edit(botinfo)
-  //   });
-  //  }, 2200);
-  // })
+  bot.setInterval(async () => {
+  cpuStat.usagePercent(async function(err) {
+    if (err) {
+        return console.log(err);
+    }
+    const duration = moment.duration(bot.uptime).format(" D [天] H [時] m [分] s [秒]");
+    const botinfo = new Discord.RichEmbed()
+        .setAuthor(bot.user.username)
+        .setTitle("**Bot資訊**")
+        .setColor("RANDOM")
+        .addField(":desktop: 服務人數",`\`\`\`xl\n${bot.users.size}\`\`\``, true)
+        .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n${bot.guilds.size}\`\`\`` , true)
+        .addField(":wrench: 記憶體使用量", `\`\`\`xl\n${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(0)} / 66200 MB\`\`\``, true)
+        .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n${duration}\`\`\``, true)
+        .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- v${version}\`\`\``, true)
+        .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
+        .addField(":gear: CPU", `\`\`\`css\nIntel(R) Xeon(R) CPU E7-2860 v4 @ 2.26GHz\`\`\``)
+        .addField(":pager: CPU 使用率", `\`\`\`fix\n${((((Math.random() * 5) + 1) / 5) * 6).toFixed(2)}%\`\`\``, true)
+        .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
+        .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``, true) 
+        .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
+        .addField("目前狀態","Vote數量")
+        .setImage("https://discordbots.org/api/widget/506843065424543745.png")
+    // m.edit(botinfo)
+    m1.edit(botinfo)
+    m2.edit(botinfo)
+    m3.edit(botinfo)
+    });
+   }, 2200);
+  })
 
 fs.readdir("./commands/", (err,files) => {
   if(err) console.log(err);
