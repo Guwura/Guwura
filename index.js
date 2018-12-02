@@ -124,35 +124,6 @@ bot.on("message", async message => {
   if(message.author.bot) return;
   if(message.content.indexOf(prefix) !== 0) return;
 
-  //on privte message
-  if (message.channel.type === "dm") { //if the channel is a DM channel
-    var dmsg = args.slice(0).join(" ") //create the args
-  
-    if (message.content.startsWith(prefix)) return message.channel.send(":x: Please use commands in real server! :x:") 
-    message.channel.send("This message has been send to the staff! :incoming_envelope:");
-    if (message.content.startsWith(prefix)) return
-    if (dmsg.length > 256) return message.reply("Your message content too many characters :/") 
-    var embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setTitle("New request in DM!")
-        .addField(dmsg, "Send by: " + message.author.username + " with the ID: " + message.author.id)
-    bot.users.get("274478905883361280").send(embed)
-  }
-  
-  if (message.content.startsWith(prefix + "reply")) {
-    if (message.author.id !== "YOUR_ID") return message.reply('You cannot use that!')
-    var Rargs = message.content.split(" ").slice(2).join(" ")
-    var userID = args[1]
-    if (isNaN(args[1])) return message.reply("This is not an ID!") //if args is Not A Number!
-    var embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setTitle("the staff answered you!")
-        .setDescription(Rargs)
-        .setFooter("this message was sent to you by: " + message.author.username + " !")
-    bot.users.get(userID).send(embed)
-    message.channel.send("Send!").catch(console.error)
-  }
-
 //on r18
 if (message.author.bot) return
   if (message.channel.id === "411894866222514188") {
