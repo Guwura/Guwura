@@ -56,42 +56,43 @@ bot.on("ready", async () => {
       .addField(":pager: CPU 使用率", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``, true)
+      .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
       .addField("目前狀態","Vote數量")
       .setImage("https://discordbots.org/api/widget/506843065424543745.png")
   // let m = await bot.channels.filter(c => c.name=="kizinn-info").forEach(c => c.send(botstartinfo))
   let m1 = await bot.channels.get("508653447164329996").send(botstartinfo)
   let m2 = await bot.channels.get("507175036092940299").send(botstartinfo)
   let m3 = await bot.channels.get("518054671286534190").send(botstartinfo)
-  bot.setInterval(async () => {
-  cpuStat.usagePercent(async function(err) {
-    if (err) {
-        return console.log(err);
-    }
-    const duration = moment.duration(bot.uptime).format(" D [天] H [時] m [分] s [秒]");
-    const botinfo = new Discord.RichEmbed()
-        .setAuthor(bot.user.username)
-        .setTitle("**Bot資訊**")
-        .setColor("RANDOM")
-        .addField(":desktop: 服務人數",`\`\`\`xl\n${bot.users.size}\`\`\``, true)
-        .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n${bot.guilds.size}\`\`\`` , true)
-        .addField(":wrench: 記憶體使用量", `\`\`\`xl\n${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(0)} / 66200 MB\`\`\``, true)
-        .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n${duration}\`\`\``, true)
-        .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- v${version}\`\`\``, true)
-        .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
-        .addField(":gear: CPU", `\`\`\`css\nIntel(R) Xeon(R) CPU E7-2860 v4 @ 2.26GHz\`\`\``)
-        .addField(":pager: CPU 使用率", `\`\`\`fix\n${((((Math.random() * 5) + 1) / 5) * 6).toFixed(2)}%\`\`\``, true)
-        .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
-        .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``, true) 
-        .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
-        .addField("目前狀態","Vote數量")
-        .setImage("https://discordbots.org/api/widget/506843065424543745.png")
-    // m.edit(botinfo)
-    m1.edit(botinfo)
-    m2.edit(botinfo)
-    m3.edit(botinfo)
-    });
-   }, 2200);
-  })
+  // bot.setInterval(async () => {
+  // cpuStat.usagePercent(async function(err) {
+  //   if (err) {
+  //       return console.log(err);
+  //   }
+  //   const duration = moment.duration(bot.uptime).format(" D [天] H [時] m [分] s [秒]");
+  //   const botinfo = new Discord.RichEmbed()
+  //       .setAuthor(bot.user.username)
+  //       .setTitle("**Bot資訊**")
+  //       .setColor("RANDOM")
+  //       .addField(":desktop: 服務人數",`\`\`\`xl\n${bot.users.size}\`\`\``, true)
+  //       .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n${bot.guilds.size}\`\`\`` , true)
+  //       .addField(":wrench: 記憶體使用量", `\`\`\`xl\n${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(0)} / 66200 MB\`\`\``, true)
+  //       .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n${duration}\`\`\``, true)
+  //       .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- v${version}\`\`\``, true)
+  //       .addField(":green_book: Node.js版本", `\`\`\`diff\n- ${process.version}\`\`\``, true)
+  //       .addField(":gear: CPU", `\`\`\`css\nIntel(R) Xeon(R) CPU E7-2860 v4 @ 2.26GHz\`\`\``)
+  //       .addField(":pager: CPU 使用率", `\`\`\`fix\n${((((Math.random() * 5) + 1) / 5) * 6).toFixed(2)}%\`\`\``, true)
+  //       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
+  //       .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``, true) 
+  //       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
+  //       .addField("目前狀態","Vote數量")
+  //       .setImage("https://discordbots.org/api/widget/506843065424543745.png")
+  //   // m.edit(botinfo)
+  //   m1.edit(botinfo)
+  //   m2.edit(botinfo)
+  //   m3.edit(botinfo)
+  //   });
+  //  }, 2200);
+  // })
 
 fs.readdir("./commands/", (err,files) => {
   if(err) console.log(err);
@@ -111,7 +112,7 @@ fs.readdir("./commands/", (err,files) => {
 bot.on("message", async message => {
 
   //command handler
-	//if (message.author.bot || message.channel.type === 'dm') return;
+	if (message.author.bot || message.channel.type === 'dm') return;
 	if (message.content.toLowerCase().indexOf(prefix) !== 0) return
     const args = message.content.split(" ").slice(0);
     const command = args.shift().toLowerCase();
@@ -125,33 +126,33 @@ bot.on("message", async message => {
   if(message.content.indexOf(prefix) !== 0) return;
 
   //on privte message
-  if (message.channel.type === "dm") { //if the channel is a DM channel
-    var dmsg = args.slice(0).join(" ") //create the args
+  // if (message.channel.type === "dm") { //if the channel is a DM channel
+  //   var dmsg = args.slice(0).join(" ") //create the args
   
-    if (message.content.startsWith(prefix)) return message.channel.send(":x: Please use commands in real server! :x:") 
-    message.channel.send("This message has been send to the staff! :incoming_envelope:");
-    if (message.content.startsWith(prefix)) return
-    if (dmsg.length > 256) return message.reply("Your message content too many characters :/") 
-    var embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setTitle("New request in DM!")
-        .addField(dmsg, "Send by: " + message.author.username + " with the ID: " + message.author.id)
-    bot.users.get("274478905883361280").send(embed)
-  }
+  //   if (message.content.startsWith(prefix)) return message.channel.send(":x: Please use commands in real server! :x:") 
+  //   message.channel.send("This message has been send to the staff! :incoming_envelope:");
+  //   if (message.content.startsWith(prefix)) return
+  //   if (dmsg.length > 256) return message.reply("Your message content too many characters :/") 
+  //   var embed = new Discord.RichEmbed()
+  //       .setColor('RANDOM')
+  //       .setTitle("New request in DM!")
+  //       .addField(dmsg, "Send by: " + message.author.username + " with the ID: " + message.author.id)
+  //   bot.users.get("274478905883361280").send(embed)
+  // }
   
-  if (message.content.startsWith(prefix + "reply")) {
-    if (message.author.id !== "YOUR_ID") return message.reply('You cannot use that!')
-    var Rargs = message.content.split(" ").slice(2).join(" ")
-    var userID = args[1]
-    if (isNaN(args[1])) return message.reply("This is not an ID!") //if args is Not A Number!
-    var embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setTitle("the staff answered you!")
-        .setDescription(Rargs)
-        .setFooter("this message was sent to you by: " + message.author.username + " !")
-    bot.users.get(userID).send(embed)
-    message.channel.send("Send!").catch(console.error)
-  }
+  // if (message.content.startsWith(prefix + "reply")) {
+  //   if (message.author.id !== "YOUR_ID") return message.reply('You cannot use that!')
+  //   var Rargs = message.content.split(" ").slice(2).join(" ")
+  //   var userID = args[1]
+  //   if (isNaN(args[1])) return message.reply("This is not an ID!") //if args is Not A Number!
+  //   var embed = new Discord.RichEmbed()
+  //       .setColor('RANDOM')
+  //       .setTitle("the staff answered you!")
+  //       .setDescription(Rargs)
+  //       .setFooter("this message was sent to you by: " + message.author.username + " !")
+  //   bot.users.get(userID).send(embed)
+  //   message.channel.send("Send!").catch(console.error)
+  // }
 
 //on r18
 if (message.author.bot) return
