@@ -109,7 +109,7 @@ fs.readdir("./commands/", (err,files) => {
 bot.on("message", async message => {
 
   //command handler
-	if (message.author.bot || message.channel.type === 'dm') return;
+	//if (message.author.bot || message.channel.type === 'dm') return;
 	if (message.content.toLowerCase().indexOf(prefix) !== 0) return
     const args = message.content.split(" ").slice(0);
     const command = args.shift().toLowerCase();
