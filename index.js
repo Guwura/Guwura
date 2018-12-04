@@ -84,7 +84,7 @@ bot.on("ready", async () => {
   // let m1 = await bot.channels.get("508653447164329996").send(botstartinfo)
   // let m2 = await bot.channels.get("507175036092940299").send(botstartinfo)
   // let m3 = await bot.channels.get("518054671286534190").send(botstartinfo)
-  bot.setInterval(async () => {
+  bot.setInterval(async function(){
   cpuStat.usagePercent(async function(err) {
     if (err) {
         return console.log(err);
