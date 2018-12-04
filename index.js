@@ -76,7 +76,7 @@ bot.on("ready", async () => {
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``)
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
   
-  bot.channels.find(c => c.name === "kizinn-info").forEach(c => c.send(statusmessage).then(m => statusMessages.push(m)));
+  bot.channels.filter(c => c.name === "kizinn-info").forEach(c => c.send(statusmessage).then(m => statusMessages.push(m)));
       
   setInterval(function(){
     cpuStat.usagePercent(async function(err){
