@@ -76,7 +76,7 @@ bot.on("ready", async () => {
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``)
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
 
-  bot.channels.find(c => c.name === "kizinn-info").forEach(c => c.send(botstartinfo).then(m => botstartinfo.push(m)));
+  bot.channels.fliter(c => c.name === "kizinn-info").forEach(c => c.send(botstartinfo).then(m => botstartinfo.push(m)));
   // setInterval(function(){
   //   botstartinfo.forEach(m => m.edit(botinfo))
   // },2200) 
@@ -114,7 +114,7 @@ bot.on("ready", async () => {
    }, 2200);
   })
 
-  
+
 
 fs.readdir("./commands/", (err,files) => {
   if(err) console.log(err);
