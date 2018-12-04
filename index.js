@@ -103,8 +103,8 @@ bot.on("ready", async () => {
       // m1.edit(botinfo)
       // m2.edit(botinfo)
       // m3.edit(botinfo)
+      statusMessages.forEach(m => m.edit(botinfo))
     });
-  statusMessages.forEach(m => m.edit(botinfo))
   },2200)
   
   // let m1 = await bot.channels.get("508653447164329996").send(botstartinfo)
