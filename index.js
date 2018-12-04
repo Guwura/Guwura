@@ -87,6 +87,7 @@ bot.on("ready", async () => {
       const botinfo = new Discord.RichEmbed()
           .setAuthor(bot.user.username)
           .setTitle("**Bot資訊**")
+          .setDescription("\`\`\`如果需要此資訊列表 請在你的群組創建一個名為\"kizinn-info\"的頻道 機器人將會在下一次啟動時載入資料`\`\`")
           .setColor("RANDOM")
           .addField(":desktop: 服務人數",`\`\`\`xl\n${bot.users.size}\`\`\``, true)
           .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n${bot.guilds.size}\`\`\`` , true)
@@ -100,6 +101,9 @@ bot.on("ready", async () => {
           .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
           .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``) 
           .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
+          .addField("目前狀態","Vote數量")
+          .setImage("https://discordbots.org/api/widget/506843065424543745.png")
+          
       // m1.edit(botinfo)
       // m2.edit(botinfo)
       // m3.edit(botinfo)
