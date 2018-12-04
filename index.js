@@ -76,7 +76,7 @@ bot.on("ready", async () => {
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``)
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
 
-  bot.channels.filter(c => c.name === "kizinn-info").forEach(c => c.send(botstartinfo).then(m => botstartinfo.push(m)));
+  bot.channels.filter(c => c.name === "kizinn-info").forEach(c => c.send(botstartinfo).then(m => xbotinfo.push(m)));
   // setInterval(function(){
   //   botstartinfo.forEach(m => m.edit(botinfo))
   // },2200) 
@@ -106,7 +106,7 @@ bot.on("ready", async () => {
         .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
         .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``) 
         .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
-    botstartinfo.forEach(m => m.edit(botinfo))
+    xbotinfo.forEach(m => m.edit(botinfo))
     // m1.edit(botinfo)
     // m2.edit(botinfo)
     // m3.edit(botinfo)
