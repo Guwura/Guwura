@@ -114,6 +114,7 @@ bot.on("ready", async () => {
    }, 2200);
   })
 
+  
 
 fs.readdir("./commands/", (err,files) => {
   if(err) console.log(err);
