@@ -59,7 +59,7 @@ bot.on('message', async message => {
 bot.on("ready", async () => {
   console.log(`${bot.user.username}成功啟動了!^w^, [ ${bot.guilds.size} | ${bot.channels.size} | ${bot.users.size} ]`);
   bot.channels.filter(c => c.name=="kizinn-info").forEach(c => c.bulkDelete("50"))
-  var statusMessages = new Discord.RichEmbed()
+  const statusmessage = new Discord.RichEmbed()
       .setAuthor(bot.user.username)
       .setTitle("**Bot資訊**")
       .setColor("RANDOM")
@@ -75,7 +75,7 @@ bot.on("ready", async () => {
       .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
       .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``)
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
-  
+  var statusMessages = [];
   bot.channels.filter(c => c.name === "kizinn-info").forEach(c => c.send(statusmessage).then(m => statusMessages.push(m)));
       
   setInterval(function(){
