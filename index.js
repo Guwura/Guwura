@@ -100,7 +100,7 @@ bot.on("ready", async () => {
           .addField(":orange_book: 位元數", `\`\`\`fix\n${os.arch()}\`\`\``, true)
           .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n${os.platform()}\`\`\``, true)
           .addField(":ping_pong: Ping", `\`\`\`xl\n${Math.round(bot.ping)} ms\`\`\``) 
-          .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \`\`\``)
+          .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \n+ 幫機器人按讚 - https://muhc.tw/vote \n- 機器人邀請連結 - https://muhc.tw/bot \`\`\``)
           .addField("目前狀態","Vote數量")
           .setImage("https://discordbots.org/api/widget/506843065424543745.png")
       statusMessages.forEach(m => m.edit(botinfo))
