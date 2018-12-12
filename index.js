@@ -19,6 +19,15 @@ let index = 0;
 
 bot.commands = new Discord.Collection();
 
+// JSON Files
+let userData = JSON.parse(fs.readFileSync('./Storage/userData.json', 'utf8'));
+let exp = JSON.parse(fs.readFileSync('./Storage/exp.json', 'utf8'));
+let money = JSON.parse(fs.readFileSync('./Storage/money.json', 'utf8'));
+
+// FS
+if (!userData[sender.id]) userData[sender.id] = {}
+if (!userData[sender.id].money) userData[sender.id].money = 1000;
+
 bot.on('ready', function() {
   const statuslist = [
       `muhc/help | 任何問題請WeiKu#3402 ♪`,
