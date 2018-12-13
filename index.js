@@ -11,13 +11,14 @@ const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 
 const bot = new Discord.Client();
+const queue = new Map();
+bot.commands = new Discord.Collection();
+
 
 const token = process.env.token
 const prefix = process.env.prefix
 
 let index = 0;
-
-bot.commands = new Discord.Collection();
 
 // JSON Files
 let userData = JSON.parse(fs.readFileSync('./Storage/userData.json', 'utf8'));
