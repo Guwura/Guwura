@@ -24,22 +24,21 @@ let userData = JSON.parse(fs.readFileSync('./Storage/userData.json', 'utf8'));
 let exp = JSON.parse(fs.readFileSync('./Storage/exp.json', 'utf8'));
 let money = JSON.parse(fs.readFileSync('./Storage/money.json', 'utf8'));
 
-client.on('message', async msg => {
+bot.on('message', async msg => {
     if (msg.author.bot) return;
     if (!msg.content.startsWith(PREFIX)) return;
     const args = msg.content.split(` `);
     const searchString = args.slice(1).join(` `);
     const url = args[1] ? args[1].replace(/<(.*)>/g, `$1`) : ``;
     const serverQueue = queue.get(msg.guild.id);
-    const paper = client.emojis.find(emoji => emoji.name === "paper");
 
     if (msg.content.startsWith(`${PREFIX}play`)) {
         const voiceChannel = msg.member.voiceChannel;
         if (!voiceChannel) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `🚫 ERROR`,
                 color: 0x7070db,
@@ -50,13 +49,13 @@ client.on('message', async msg => {
                 },
             }
         });
-        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        const permissions = voiceChannel.permissionsFor(msg.bot.user);
         if (!permissions.has('CONNECT')) {
             return msg.channel.send({
                 embed: {
                     author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL,
+                        name: bot.user.username,
+                        icon_url: bot.user.avatarURL,
                     },
                     title: `🚫 ERROR`,
                     color: 0x7070db,
@@ -72,8 +71,8 @@ client.on('message', async msg => {
             return msg.channel.send({
                 embed: {
                     author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL,
+                        name: bot.user.username,
+                        icon_url: bot.user.avatarURL,
                     },
                     title: `🚫 ERROR`,
                     color: 0x7070db,
@@ -96,10 +95,10 @@ client.on('message', async msg => {
             return msg.channel.send({
                 embed: {
                     author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL,
+                        name: bot.user.username,
+                        icon_url: bot.user.avatarURL,
                     },
-                    title: `${paper} PlayList`,
+                    title: `  PlayList`,
                     color: 0x7070db,
                     description: `Youtube播放清單 **${playlist.title}** 已新增`,
                     footer: {
@@ -118,8 +117,8 @@ client.on('message', async msg => {
                     msg.channel.send({
                         embed: {
                             author: {
-                                name: client.user.username,
-                                icon_url: client.user.avatarURL,
+                                name: bot.user.username,
+                                icon_url: bot.user.avatarURL,
                             },
                             title: `🎶 Music Choose`,
                             color: 0x7070db,
@@ -142,8 +141,8 @@ client.on('message', async msg => {
                         return msg.channel.send({
                             embed: {
                                 author: {
-                                    name: client.user.username,
-                                    icon_url: client.user.avatarURL,
+                                    name: bot.user.username,
+                                    icon_url: bot.user.avatarURL,
                                 },
                                 title: `❌ Cancel`,
                                 color: 0x7070db,
@@ -162,8 +161,8 @@ client.on('message', async msg => {
                     return msg.channel.send({
                         embed: {
                             author: {
-                                name: client.user.username,
-                                icon_url: client.user.avatarURL,
+                                name: bot.user.username,
+                                icon_url: bot.user.avatarURL,
                             },
                             title: `🚫 Search_ERROR`,
                             color: 0x7070db,
@@ -182,8 +181,8 @@ client.on('message', async msg => {
         if (!msg.member.voiceChannel) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `❌ Skip`,
                 color: 0x7070db,
@@ -197,8 +196,8 @@ client.on('message', async msg => {
         if (!serverQueue) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `❌ Skip`,
                 color: 0x7070db,
@@ -215,8 +214,8 @@ client.on('message', async msg => {
         if (!msg.member.voiceChannel) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `🚫 ERROR`,
                 color: 0x7070db,
@@ -230,8 +229,8 @@ client.on('message', async msg => {
         if (!serverQueue) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `🚫 ERROR`,
                 color: 0x7070db,
@@ -249,8 +248,8 @@ client.on('message', async msg => {
         if (!msg.member.voiceChannel) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `🚫 ERROR`,
                 color: 0x7070db,
@@ -264,8 +263,8 @@ client.on('message', async msg => {
         if (!serverQueue) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `❌ Volume`,
                 color: 0x7070db,
@@ -279,8 +278,8 @@ client.on('message', async msg => {
         if (!args[1]) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `🔉 Volume`,
                 color: 0x7070db,
@@ -296,8 +295,8 @@ client.on('message', async msg => {
         return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `🔉 Volume`,
                 color: 0x7070db,
@@ -312,8 +311,8 @@ client.on('message', async msg => {
         if (!serverQueue) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `❌ NowPlaying`,
                 color: 0x7070db,
@@ -327,8 +326,8 @@ client.on('message', async msg => {
         return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `▶ NowPlaying`,
                 color: 0x7070db,
@@ -343,8 +342,8 @@ client.on('message', async msg => {
         if (!serverQueue) return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `❌ Queue`,
                 color: 0x7070db,
@@ -358,10 +357,10 @@ client.on('message', async msg => {
         return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
-                title: `${paper} Queue`,
+                title: `  Queue`,
                 color: 0x7070db,
                 description: `
             ▶ __Now Playing__: \n **${serverQueue.songs[0].title}** \n⬇ **NEXT** ⬇
@@ -379,8 +378,8 @@ client.on('message', async msg => {
             return msg.channel.send({
                 embed: {
                     author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL,
+                        name: bot.user.username,
+                        icon_url: bot.user.avatarURL,
                     },
                     title: `⏸ Pause`,
                     color: 0x7070db,
@@ -395,8 +394,8 @@ client.on('message', async msg => {
         return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `❌ Pause`,
                 color: 0x7070db,
@@ -414,8 +413,8 @@ client.on('message', async msg => {
             return msg.channel.send({
                 embed: {
                     author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL,
+                        name: bot.user.username,
+                        icon_url: bot.user.avatarURL,
                     },
                     title: `▶ Resume`,
                     color: 0x7070db,
@@ -430,8 +429,8 @@ client.on('message', async msg => {
         return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `❌ Resume`,
                 color: 0x7070db,
@@ -478,8 +477,8 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
             return msg.channel.send({
                 embed: {
                     author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL,
+                        name: bot.user.username,
+                        icon_url: bot.user.avatarURL,
                     },
                     title: `🚫 ERROR`,
                     color: 0x7070db,
@@ -498,8 +497,8 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
         else return msg.channel.send({
             embed: {
                 author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL,
+                    name: bot.user.username,
+                    icon_url: bot.user.avatarURL,
                 },
                 title: `🎶 Music Add`,
                 color: 0x7070db,
