@@ -50,8 +50,7 @@ bot.on('message', async message => {
                 },
             }
         });
-        const permissions = voiceChannel.permissionsFor(message.bot.user);
-        if (!permissions.has('CONNECT')) {
+        if (!bot.user.hasPermission('CONNECT')) {
             return message.channel.send({
                 embed: {
                     author: {
@@ -68,7 +67,7 @@ bot.on('message', async message => {
                 }
             });
         }
-        if (!permissions.has(`SPEAK`)) {
+        if (!bot.user.hasPermission(`SPEAK`)) {
             return message.channel.send({
                 embed: {
                     author: {
