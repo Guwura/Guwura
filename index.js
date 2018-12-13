@@ -26,13 +26,13 @@ let money = JSON.parse(fs.readFileSync('./Storage/money.json', 'utf8'));
 
 bot.on('message', async msg => {
     if (msg.author.bot) return;
-    if (!msg.content.startsWith(PREFIX)) return;
+    if (!msg.content.startsWith(prefix)) return;
     const args = msg.content.split(` `);
     const searchString = args.slice(1).join(` `);
     const url = args[1] ? args[1].replace(/<(.*)>/g, `$1`) : ``;
     const serverQueue = queue.get(msg.guild.id);
 
-    if (msg.content.startsWith(`${PREFIX}play`)) {
+    if (msg.content.startsWith(`${prefix}play`)) {
         const voiceChannel = msg.member.voiceChannel;
         if (!voiceChannel) return msg.channel.send({
             embed: {
@@ -45,7 +45,7 @@ bot.on('message', async msg => {
                 description: `請先進入語音頻道`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
@@ -62,7 +62,7 @@ bot.on('message', async msg => {
                     description: `無法進入語音頻道\n請先給予\`連線\`權限`,
                     footer: {
                         icon_url: msg.author.avatarURL,
-                        text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                     },
                 }
             });
@@ -79,7 +79,7 @@ bot.on('message', async msg => {
                     description: `無法使用麥克風\n請先給予\`說話\`權限`,
                     footer: {
                         icon_url: msg.author.avatarURL,
-                        text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                     },
                 }
             });
@@ -103,7 +103,7 @@ bot.on('message', async msg => {
                     description: `Youtube播放清單 **${playlist.title}** 已新增`,
                     footer: {
                         icon_url: msg.author.avatarURL,
-                        text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                     },
                 }
             });
@@ -126,7 +126,7 @@ bot.on('message', async msg => {
                     ${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}`,
                             footer: {
                                 icon_url: msg.author.avatarURL,
-                                text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                                text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                             },
                         }
                     });
@@ -149,7 +149,7 @@ bot.on('message', async msg => {
                                 description: `選擇時間到\n**已取消**`,
                                 footer: {
                                     icon_url: msg.author.avatarURL,
-                                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                                 },
                             }
                         });
@@ -169,7 +169,7 @@ bot.on('message', async msg => {
                             description: `無法搜尋到結果\n**請重試**`,
                             footer: {
                                 icon_url: msg.author.avatarURL,
-                                text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                                text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                             },
                         }
                     });
@@ -177,7 +177,7 @@ bot.on('message', async msg => {
             }
             return handleVideo(video, msg, voiceChannel);
         }
-    } else if (msg.content.startsWith(`${PREFIX}skip`)) {
+    } else if (msg.content.startsWith(`${prefix}skip`)) {
         if (!msg.member.voiceChannel) return msg.channel.send({
             embed: {
                 author: {
@@ -189,7 +189,7 @@ bot.on('message', async msg => {
                 description: `Bot不在語音頻道中`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
@@ -204,13 +204,13 @@ bot.on('message', async msg => {
                 description: `請先確認音樂清單中有任何歌曲`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
         serverQueue.connection.dispatcher.end(`skip command used`);
         return;
-    } else if (msg.content.startsWith(`${PREFIX}stop`)) {
+    } else if (msg.content.startsWith(`${prefix}stop`)) {
         if (!msg.member.voiceChannel) return msg.channel.send({
             embed: {
                 author: {
@@ -222,7 +222,7 @@ bot.on('message', async msg => {
                 description: `請先進入語音頻道`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
@@ -237,14 +237,14 @@ bot.on('message', async msg => {
                 description: `Bot不在語音頻道內`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end(`stop command used`);
         return;
-    } else if (msg.content.startsWith(`${PREFIX}volume`)) {
+    } else if (msg.content.startsWith(`${prefix}volume`)) {
         if (!msg.member.voiceChannel) return msg.channel.send({
             embed: {
                 author: {
@@ -256,7 +256,7 @@ bot.on('message', async msg => {
                 description: `請先進入語音頻道`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
@@ -271,7 +271,7 @@ bot.on('message', async msg => {
                 description: `音樂清單中沒有任何音樂`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
@@ -286,7 +286,7 @@ bot.on('message', async msg => {
                 description: `目前音量 **${serverQueue.volume}** / **100**`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
@@ -303,11 +303,11 @@ bot.on('message', async msg => {
                 description: `音量變更至 **${serverQueue.volume}** / **100**`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
-    } else if (msg.content.startsWith(`${PREFIX}np`)) {
+    } else if (msg.content.startsWith(`${prefix}np`)) {
         if (!serverQueue) return msg.channel.send({
             embed: {
                 author: {
@@ -319,7 +319,7 @@ bot.on('message', async msg => {
                 description: `目前沒有任何音樂正在播放`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
@@ -334,11 +334,11 @@ bot.on('message', async msg => {
                 description: `正在播放: **${serverQueue.songs[0].title}**`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
-    } else if (msg.content.startsWith(`${PREFIX}queue`)) {
+    } else if (msg.content.startsWith(`${prefix}queue`)) {
         if (!serverQueue) return msg.channel.send({
             embed: {
                 author: {
@@ -350,7 +350,7 @@ bot.on('message', async msg => {
                 description: `音樂清單內沒有任何音樂`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
@@ -367,11 +367,11 @@ bot.on('message', async msg => {
             ${serverQueue.songs.map(song => `**-** **${song.title}**`).join('\n')}`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
-    } else if (msg.content.startsWith(`${PREFIX}pause`)) {
+    } else if (msg.content.startsWith(`${prefix}pause`)) {
         if (serverQueue && serverQueue.playing) {
             serverQueue.playing = false;
             serverQueue.connection.dispatcher.pause();
@@ -383,10 +383,10 @@ bot.on('message', async msg => {
                     },
                     title: `⏸ Pause`,
                     color: 0x7070db,
-                    description: `音樂已暫停\n使用**${PREFIX}Resume** 繼續播放音樂`,
+                    description: `音樂已暫停\n使用**${prefix}Resume** 繼續播放音樂`,
                     footer: {
                         icon_url: msg.author.avatarURL,
-                        text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                     },
                 }
             });
@@ -402,11 +402,11 @@ bot.on('message', async msg => {
                 description: `沒有音樂正在播放`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
-    } else if (msg.content.startsWith(`${PREFIX}resume`)) {
+    } else if (msg.content.startsWith(`${prefix}resume`)) {
         if (serverQueue && !serverQueue.playing) {
             serverQueue.playing = true;
             serverQueue.connection.dispatcher.resume();
@@ -421,7 +421,7 @@ bot.on('message', async msg => {
                     description: `播放音樂中\n正在播放**${serverQueue.songs[0].title}**`,
                     footer: {
                         icon_url: msg.author.avatarURL,
-                        text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                     },
                 }
             });
@@ -437,7 +437,7 @@ bot.on('message', async msg => {
                 description: `沒有音樂正在播放`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
@@ -485,7 +485,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
                     description: `ERROR!\n${error}`,
                     footer: {
                         icon_url: msg.author.avatarURL,
-                        text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                     },
                 }
             });
@@ -505,7 +505,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
                 description: `➕ 已新增 ${song.title}`,
                 footer: {
                     icon_url: msg.author.avatarURL,
-                    text: `使用${PREFIX}help 查詢指令 | Requested by ${msg.author.username}`,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
                 },
             }
         });
