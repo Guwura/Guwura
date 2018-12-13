@@ -25,17 +25,17 @@ let userData = JSON.parse(fs.readFileSync('./Storage/userData.json', 'utf8'));
 let exp = JSON.parse(fs.readFileSync('./Storage/exp.json', 'utf8'));
 let money = JSON.parse(fs.readFileSync('./Storage/money.json', 'utf8'));
 
-bot.on('message', async msg => {
-    if (msg.author.bot) return;
-    if (!msg.content.startsWith(prefix)) return;
-    const args = msg.content.split(` `);
+bot.on('message', async message => {
+    if (message.author.bot) return;
+    if (!message.content.startsWith(prefix)) return;
+    const args = message.content.split(` `);
     const searchString = args.slice(1).join(` `);
     const url = args[1] ? args[1].replace(/<(.*)>/g, `$1`) : ``;
-    const serverQueue = queue.get(msg.guild.id);
+    const serverQueue = queue.get(message.guild.id);
 
-    if (msg.content.startsWith(`${prefix}play`)) {
-        const voiceChannel = msg.member.voiceChannel;
-        if (!voiceChannel) return msg.channel.send({
+    if (message.content.startsWith(`${prefix}play`)) {
+        const voiceChannel = message.member.voiceChannel;
+        if (!voiceChannel) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -45,14 +45,14 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `請先進入語音頻道`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-        const permissions = voiceChannel.permissionsFor(msg.bot.user);
+        const permissions = voiceChannel.permissionsFor(message.bot.user);
         if (!permissions.has('CONNECT')) {
-            return msg.channel.send({
+            return message.channel.send({
                 embed: {
                     author: {
                         name: bot.user.username,
@@ -62,14 +62,14 @@ bot.on('message', async msg => {
                     color: 0x7070db,
                     description: `無法進入語音頻道\n請先給予\`連線\`權限`,
                     footer: {
-                        icon_url: msg.author.avatarURL,
-                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                        icon_url: message.author.avatarURL,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                     },
                 }
             });
         }
         if (!permissions.has(`SPEAK`)) {
-            return msg.channel.send({
+            return message.channel.send({
                 embed: {
                     author: {
                         name: bot.user.username,
@@ -79,8 +79,8 @@ bot.on('message', async msg => {
                     color: 0x7070db,
                     description: `無法使用麥克風\n請先給予\`說話\`權限`,
                     footer: {
-                        icon_url: msg.author.avatarURL,
-                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                        icon_url: message.author.avatarURL,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                     },
                 }
             });
@@ -91,9 +91,9 @@ bot.on('message', async msg => {
             const videos = await playlist.getVideos();
             for (const video of Object.values(videos)) {
                 const video2 = await youtube.getVideoByID(video.id);
-                await handleVideo(video2, msg, voiceChannel, true);
+                await handleVideo(video2, message, voiceChannel, true);
             }
-            return msg.channel.send({
+            return message.channel.send({
                 embed: {
                     author: {
                         name: bot.user.username,
@@ -103,8 +103,8 @@ bot.on('message', async msg => {
                     color: 0x7070db,
                     description: `Youtube播放清單 **${playlist.title}** 已新增`,
                     footer: {
-                        icon_url: msg.author.avatarURL,
-                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                        icon_url: message.author.avatarURL,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                     },
                 }
             });
@@ -115,7 +115,7 @@ bot.on('message', async msg => {
                 try {
                     var videos = await youtube.searchVideos(searchString, 10);
                     var index = 0;
-                    msg.channel.send({
+                    message.channel.send({
                         embed: {
                             author: {
                                 name: bot.user.username,
@@ -126,20 +126,20 @@ bot.on('message', async msg => {
                             description: `__**選擇你所要播放的音樂**__
                     ${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}`,
                             footer: {
-                                icon_url: msg.author.avatarURL,
-                                text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                                icon_url: message.author.avatarURL,
+                                text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                             },
                         }
                     });
                     try {
-                        var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
+                        var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 11, {
                             maxMatches: 1,
                             time: 20000,
                             errors: [`time`]
                         });
                     } catch (err) {
                         console.error(err);
-                        return msg.channel.send({
+                        return message.channel.send({
                             embed: {
                                 author: {
                                     name: bot.user.username,
@@ -149,8 +149,8 @@ bot.on('message', async msg => {
                                 color: 0x7070db,
                                 description: `選擇時間到\n**已取消**`,
                                 footer: {
-                                    icon_url: msg.author.avatarURL,
-                                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                                    icon_url: message.author.avatarURL,
+                                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                                 },
                             }
                         });
@@ -159,7 +159,7 @@ bot.on('message', async msg => {
                     var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
                 } catch (err) {
                     console.error(err);
-                    return msg.channel.send({
+                    return message.channel.send({
                         embed: {
                             author: {
                                 name: bot.user.username,
@@ -169,17 +169,17 @@ bot.on('message', async msg => {
                             color: 0x7070db,
                             description: `無法搜尋到結果\n**請重試**`,
                             footer: {
-                                icon_url: msg.author.avatarURL,
-                                text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                                icon_url: message.author.avatarURL,
+                                text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                             },
                         }
                     });
                 }
             }
-            return handleVideo(video, msg, voiceChannel);
+            return handleVideo(video, message, voiceChannel);
         }
-    } else if (msg.content.startsWith(`${prefix}skip`)) {
-        if (!msg.member.voiceChannel) return msg.channel.send({
+    } else if (message.content.startsWith(`${prefix}skip`)) {
+        if (!message.member.voiceChannel) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -189,12 +189,12 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `Bot不在語音頻道中`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-        if (!serverQueue) return msg.channel.send({
+        if (!serverQueue) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -204,15 +204,15 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `請先確認音樂清單中有任何歌曲`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
         serverQueue.connection.dispatcher.end(`skip command used`);
         return;
-    } else if (msg.content.startsWith(`${prefix}stop`)) {
-        if (!msg.member.voiceChannel) return msg.channel.send({
+    } else if (message.content.startsWith(`${prefix}stop`)) {
+        if (!message.member.voiceChannel) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -222,12 +222,12 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `請先進入語音頻道`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-        if (!serverQueue) return msg.channel.send({
+        if (!serverQueue) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -237,16 +237,16 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `Bot不在語音頻道內`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end(`stop command used`);
         return;
-    } else if (msg.content.startsWith(`${prefix}volume`)) {
-        if (!msg.member.voiceChannel) return msg.channel.send({
+    } else if (message.content.startsWith(`${prefix}volume`)) {
+        if (!message.member.voiceChannel) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -256,12 +256,12 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `請先進入語音頻道`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-        if (!serverQueue) return msg.channel.send({
+        if (!serverQueue) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -271,12 +271,12 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `音樂清單中沒有任何音樂`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-        if (!args[1]) return msg.channel.send({
+        if (!args[1]) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -286,14 +286,14 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `目前音量 **${serverQueue.volume}** / **100**`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
         serverQueue.volume = args[1];
         serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 100);
-        return msg.channel.send({
+        return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -303,13 +303,13 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `音量變更至 **${serverQueue.volume}** / **100**`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-    } else if (msg.content.startsWith(`${prefix}np`)) {
-        if (!serverQueue) return msg.channel.send({
+    } else if (message.content.startsWith(`${prefix}np`)) {
+        if (!serverQueue) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -319,12 +319,12 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `目前沒有任何音樂正在播放`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-        return msg.channel.send({
+        return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -334,13 +334,13 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `正在播放: **${serverQueue.songs[0].title}**`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-    } else if (msg.content.startsWith(`${prefix}queue`)) {
-        if (!serverQueue) return msg.channel.send({
+    } else if (message.content.startsWith(`${prefix}queue`)) {
+        if (!serverQueue) return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -350,12 +350,12 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `音樂清單內沒有任何音樂`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-        return msg.channel.send({
+        return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -367,16 +367,16 @@ bot.on('message', async msg => {
             ▶ __Now Playing__: \n **${serverQueue.songs[0].title}** \n⬇ **NEXT** ⬇
             ${serverQueue.songs.map(song => `**-** **${song.title}**`).join('\n')}`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-    } else if (msg.content.startsWith(`${prefix}pause`)) {
+    } else if (message.content.startsWith(`${prefix}pause`)) {
         if (serverQueue && serverQueue.playing) {
             serverQueue.playing = false;
             serverQueue.connection.dispatcher.pause();
-            return msg.channel.send({
+            return message.channel.send({
                 embed: {
                     author: {
                         name: bot.user.username,
@@ -386,13 +386,13 @@ bot.on('message', async msg => {
                     color: 0x7070db,
                     description: `音樂已暫停\n使用**${prefix}Resume** 繼續播放音樂`,
                     footer: {
-                        icon_url: msg.author.avatarURL,
-                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                        icon_url: message.author.avatarURL,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                     },
                 }
             });
         }
-        return msg.channel.send({
+        return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -402,16 +402,16 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `沒有音樂正在播放`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
-    } else if (msg.content.startsWith(`${prefix}resume`)) {
+    } else if (message.content.startsWith(`${prefix}resume`)) {
         if (serverQueue && !serverQueue.playing) {
             serverQueue.playing = true;
             serverQueue.connection.dispatcher.resume();
-            return msg.channel.send({
+            return message.channel.send({
                 embed: {
                     author: {
                         name: bot.user.username,
@@ -421,13 +421,13 @@ bot.on('message', async msg => {
                     color: 0x7070db,
                     description: `播放音樂中\n正在播放**${serverQueue.songs[0].title}**`,
                     footer: {
-                        icon_url: msg.author.avatarURL,
-                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                        icon_url: message.author.avatarURL,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                     },
                 }
             });
         }
-        return msg.channel.send({
+        return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -437,8 +437,8 @@ bot.on('message', async msg => {
                 color: 0x7070db,
                 description: `沒有音樂正在播放`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
@@ -446,8 +446,8 @@ bot.on('message', async msg => {
     return;
 });
 
-async function handleVideo(video, msg, voiceChannel, playlist = false) {
-    const serverQueue = queue.get(msg.guild.id);
+async function handleVideo(video, message, voiceChannel, playlist = false) {
+    const serverQueue = queue.get(message.guild.id);
     console.log(video)
     const song = {
         id: video.id,
@@ -456,26 +456,26 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
     };
     if (!serverQueue) {
         const queueConstruct = {
-            textChannel: msg.channel,
+            textChannel: message.channel,
             voiceChannel: voiceChannel,
             connection: null,
             songs: [],
             volume: 100,
             playing: true
         };
-        queue.set(msg.guild.id, queueConstruct);
+        queue.set(message.guild.id, queueConstruct);
 
         queueConstruct.songs.push(song);
 
         try {
             var connection = await voiceChannel.join();
             queueConstruct.connection = connection;
-            play(msg.guild, queueConstruct.songs[0]);
+            play(message.guild, queueConstruct.songs[0]);
 
         } catch (error) {
             console.error(`ERROR: ${error}`);
-            queue.delete(msg.guild.id);
-            return msg.channel.send({
+            queue.delete(message.guild.id);
+            return message.channel.send({
                 embed: {
                     author: {
                         name: bot.user.username,
@@ -485,8 +485,8 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
                     color: 0x7070db,
                     description: `ERROR!\n${error}`,
                     footer: {
-                        icon_url: msg.author.avatarURL,
-                        text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                        icon_url: message.author.avatarURL,
+                        text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                     },
                 }
             });
@@ -495,7 +495,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
         serverQueue.songs.push(song);
         console.log(serverQueue.songs);
         if (playlist) return;
-        else return msg.channel.send({
+        else return message.channel.send({
             embed: {
                 author: {
                     name: bot.user.username,
@@ -505,8 +505,8 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
                 color: 0x7070db,
                 description: `➕ 已新增 ${song.title}`,
                 footer: {
-                    icon_url: msg.author.avatarURL,
-                    text: `使用${prefix}help 查詢指令 | Requested by ${msg.author.username}`,
+                    icon_url: message.author.avatarURL,
+                    text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
                 },
             }
         });
