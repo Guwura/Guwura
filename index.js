@@ -50,7 +50,7 @@ bot.on('message', async message => {
                 },
             }
         });
-        if (!bot.user.hasPermission('CONNECT')) {
+        if (!message.guild.me.hasPermission('CONNECT')) {
             return message.channel.send({
                 embed: {
                     author: {
@@ -67,7 +67,7 @@ bot.on('message', async message => {
                 }
             });
         }
-        if (!bot.user.hasPermission(`SPEAK`)) {
+        if (message.guild.me.hasPermission(`SPEAK`)) {
             return message.channel.send({
                 embed: {
                     author: {
