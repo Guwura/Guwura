@@ -9,14 +9,17 @@ let cpuStat = require("cpu-stat")
 const ms = require("ms")
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
+const DBL = require("dblapi.js");
 
 const bot = new Discord.Client();
 const queue = new Map();
+const dbl = new DBL(dbltoken, client);
 bot.commands = new Discord.Collection();
 
 
 const token = process.env.token
 const prefix = process.env.prefix
+const dbltoken = process.env.dbltoken
 
 let index = 0;
 
@@ -25,6 +28,12 @@ let userData = JSON.parse(fs.readFileSync('./Storage/userData.json', 'utf8'));
 let exp = JSON.parse(fs.readFileSync('./Storage/exp.json', 'utf8'));
 let money = JSON.parse(fs.readFileSync('./Storage/money.json', 'utf8'));
 
+
+
+// Optional events
+dbl.on('error', e => {
+ console.log(`${e}`);
+})
 bot.on('message', async message => {
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
@@ -67,23 +76,23 @@ bot.on('message', async message => {
                 }
             });
         }
-        if (message.guild.me.hasPermission(`SPEAK`)) {
-            return message.channel.send({
-                embed: {
-                    author: {
-                        name: bot.user.username,
-                        icon_url: bot.user.avatarURL,
-                    },
-                    title: `🚫 ERROR`,
-                    color: 0x7070db,
-                    description: `無法使用麥克風\n請先給予\`說話\`權限`,
-                    footer: {
-                        icon_url: message.author.avatarURL,
-                        text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
-                    },
-                }
-            });
-        }
+        // if (message.guild.me.hasPermission(`SPEAK`)) {
+        //     return message.channel.send({
+        //         embed: {
+        //             author: {
+        //                 name: bot.user.username,
+        //                 icon_url: bot.user.avatarURL,
+        //             },
+        //             title: `🚫 ERROR`,
+        //             color: 0x7070db,
+        //             description: `無法使用麥克風\n請先給予\`說話\`權限`,
+        //             footer: {
+        //                 icon_url: message.author.avatarURL,
+        //                 text: `使用${prefix}help 查詢指令 | Requested by ${message.author.username}`,
+        //             },
+        //         }
+        //     });
+        // }
 
         if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
             const playlist = await youtube.getPlaylist(url);
