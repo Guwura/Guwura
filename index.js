@@ -17,7 +17,7 @@ const dbltoken = process.env.dbltoken
 
 const bot = new Discord.Client();
 const queue = new Map();
-const dbl = new DBL(dbltoken, client);
+const dbl = new DBL(dbltoken, bot);
 bot.commands = new Discord.Collection();
 
 
