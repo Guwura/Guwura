@@ -11,15 +11,16 @@ const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const DBL = require("dblapi.js");
 
+const token = process.env.token
+const prefix = process.env.prefix
+const dbltoken = process.env.dbltoken
+
 const bot = new Discord.Client();
 const queue = new Map();
 const dbl = new DBL(dbltoken, client);
 bot.commands = new Discord.Collection();
 
 
-const token = process.env.token
-const prefix = process.env.prefix
-const dbltoken = process.env.dbltoken
 
 let index = 0;
 
