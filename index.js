@@ -16,25 +16,9 @@ const prefix = process.env.prefix
 const dbltoken = process.env.dbltoken
 
 const bot = new Discord.Client();
-const queue = new Map();
-const dbl = new DBL(dbltoken, bot);
 bot.commands = new Discord.Collection();
 
-
-
 let index = 0;
-
-// JSON Files
-let userData = JSON.parse(fs.readFileSync('./Storage/userData.json', 'utf8'));
-let exp = JSON.parse(fs.readFileSync('./Storage/exp.json', 'utf8'));
-let money = JSON.parse(fs.readFileSync('./Storage/money.json', 'utf8'));
-
-
-
-// Optional events
-dbl.on('error', e => {
- console.log(`${e}`);
-})
 
 bot.on('ready', function() {
   const statuslist = [
