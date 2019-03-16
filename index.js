@@ -59,14 +59,22 @@ bot.on('message', async message => {
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username}成功啟動了!^w^, [ ${bot.guilds.size} | ${bot.channels.size} | ${bot.users.size} ]`);
-  bot.channels.filter(c => c.name=="伺服器狀態").forEach(c => c.bulkDelete("50"))
+  bot.channels.filter(c => c.name=="kizinn-info").forEach(c => c.bulkDelete("50"))
   const statusmessage = new Discord.RichEmbed()
       .setAuthor(bot.user.username)
       .setTitle("**Bot資訊**")
       .setColor("RANDOM")
-      .addField(":desktop: 遊玩人數",`\`\`\`xl\n計算中...\`\`\``, true)
-      .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n機器人正在啟動...\`\`\``, true)
-
+      .addField(":desktop: 服務人數",`\`\`\`xl\n計算中...\`\`\``, true)
+      .addField(":bust_in_silhouette: 服務伺服器數 ",`\`\`\`xl\n計算中...\`\`\`` , true)
+      .addField(":wrench: 記憶體使用量", `\`\`\`xl\n正在啟動...\`\`\``, true)
+      .addField(":stopwatch: 運行時間 ", `\`\`\`xl\n正在啟動...\`\`\``, true)
+      .addField(":blue_book: Discord.js版本", `\`\`\`diff\n- 偵測中...\`\`\``, true)
+      .addField(":green_book: Node.js版本", `\`\`\`diff\n- 偵測中...\`\`\``, true)
+      .addField(":gear: CPU", `\`\`\`css\n偵測中...\`\`\``)
+      .addField(":pager: CPU 使用率", `\`\`\`fix\n正在啟動...\`\`\``, true)
+      .addField(":orange_book: 位元數", `\`\`\`fix\n正在啟動...\`\`\``, true)
+      .addField(":triangular_flag_on_post: 主機平台", `\`\`\`fix\n正在啟動...\`\`\``, true)
+      .addField(":ping_pong: Ping", `\`\`\`xl\n偵測中...\`\`\``)
       .addField("**相關連結**",`\`\`\`diff\n+ Discord邀請連結 - https://muhc.tw/dc \n- 官方網站 - https://muhc.tw \`\`\``)
   var statusMessages = [];
   bot.channels.filter(c => c.name === "kizinn-info").forEach(c => c.send(statusmessage).then(m => statusMessages.push(m)));
@@ -98,7 +106,7 @@ bot.on("ready", async () => {
           .setImage("https://discordbots.org/api/widget/506843065424543745.png")
       statusMessages.forEach(m => m.edit(botinfo))
     });
-  },3000)
+  },2200)
   })
 
 
