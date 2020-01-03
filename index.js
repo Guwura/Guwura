@@ -22,15 +22,13 @@ let index = 0;
 
 bot.on('ready', function() {
   const statuslist = [
-      `muhc/help | 任何問題請WeiKu#3402 ♪`,
+      `muhc/help | 任何問題請AiverAiva#3402 ♪`,
       `機器人製作 | 微苦 ♪`,
       `頭像繪製 | 星亞 ♪`,
-      `官方網站 | Muhc.tw ♪`,
-      `邀請Kizinn | Muhc.tw/bot ♪`,
-      `幫Kizinn按讚 | Muhc.tw/vote ♪`,
-      `Muhc官方頻道 | Muhc.tw/yt ♪`,
-      `Muhc官方群組 | Muhc.tw/dc ♪`,
-      `如想在你的伺服器使用kizinn-info請洽WeiKu#3402 ♪`
+      `官方網站 | Kizinn.tk ♪`,
+      `邀請Kizinn | Bot.Kizinn.tk/invite ♪`,
+      `幫Kizinn按讚 | Bot.Kizinn.tk/vote ♪`,
+      `Muhc官方群組 | Unstable ♪`,
   ];
   bot.setInterval(() => {
     bot.user.setActivity(statuslist[index], { type: "STREAMING", url: "https://www.twitch.tv/weikuouo"});
