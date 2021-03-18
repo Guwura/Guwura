@@ -107,7 +107,7 @@ bot.on("message", async message => {
 	try{
     let commandFile = require(`./commands/${command}.js`);
     commandFile.run(bot, message, args);
-	}catch(err){
+	}catch(err){ 
 		message.reply(`未知指令! 請輸入 **${prefix}help** 查看指令列表`)
   }
   if(message.author.bot) return;
